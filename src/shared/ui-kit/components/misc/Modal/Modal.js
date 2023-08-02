@@ -44,7 +44,7 @@ export const Modal = styled(({ className, children, title, onClose, ...baseProps
   );
 })`
   position: relative;
-  border-radius: 0.25rem;
+  border-radius: 1.5rem;
   background: white;
   z-index: 100;
   max-width: 100%;

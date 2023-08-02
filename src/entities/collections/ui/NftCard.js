@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { css } from 'styled-components/macro';
-import { PrimaryButton as PrimaryButtonBase } from '../../../shared/ui-kit/components/misc/Buttons';
+import { Button, PrimaryButton as PrimaryButtonBase } from '../../../shared/ui-kit/components/misc/Buttons';
 import { useStoreMap } from 'effector-react';
 import { collectionsModel } from '../model';
 import { Link } from 'react-router-dom';
@@ -28,7 +28,7 @@ const CardRating = styled.div`
 `;
 
 const CardHoverOverlay = styled(motion.div)`
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   ${tw`absolute inset-0 flex justify-center items-center`}
 `;
 const CardButton = tw(PrimaryButtonBase)`text-sm`;
@@ -78,7 +78,7 @@ export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) 
             }}
             transition={{ duration: 0.3 }}
           >
-            <CardButton>{labelAction}</CardButton>
+            <Button>{labelAction}</Button>
           </CardHoverOverlay>
         </CardImageContainer>
         <CardText>

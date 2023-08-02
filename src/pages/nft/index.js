@@ -97,7 +97,7 @@ export const NftPage = () => {
                   modules={[Navigation, Thumbs, FreeMode]}
                   navigation
                   thumbs={{ swiper: thumbsSwiper }}
-                  style={{ '--swiper-navigation-color': '#6415ff', '--swiper-navigation-sides-offset': '0' }}
+                  style={{ '--swiper-navigation-sides-offset': '0' }}
                 >
                   {metadata.media?.map((item) => (
                     <SwiperSlide key={item?.url}>

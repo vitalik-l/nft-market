@@ -71,6 +71,8 @@ export const BuyNftForm = ({ nftAddress, className }) => {
           numeric
           disableDecimals
           onPaste={(event) => event.preventDefault()}
+          pattern="[0-9]*"
+          inputmode="numeric"
         />
       </div>
       <div css={tw`grid gap-2 text-left`}>
