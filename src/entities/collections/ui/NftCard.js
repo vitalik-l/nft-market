@@ -11,7 +11,9 @@ import { usd } from '../../../shared/lib/usd';
 import { useTranslation } from 'react-i18next';
 
 const CardContainer = tw.div`mt-10 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 sm:pr-10 md:pr-6 lg:pr-12`;
-const Card = tw(motion(Link))`bg-gray-200 rounded-b block max-w-xs mx-auto sm:max-w-none sm:mx-0`;
+const Card = tw(
+  motion(Link)
+)`border border-primary-500 rounded-2xl block max-w-xs mx-auto sm:max-w-none sm:mx-0 overflow-hidden`;
 const CardImageContainer = styled.div`
   ${(props) =>
     css`
@@ -31,7 +33,6 @@ const CardHoverOverlay = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.7);
   ${tw`absolute inset-0 flex justify-center items-center`}
 `;
-const CardButton = tw(PrimaryButtonBase)`text-sm`;
 
 const CardReview = tw.div`font-medium text-xs text-gray-600`;
 

@@ -18,6 +18,7 @@ import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
 import { Footer } from '../../widgets/footer';
 import { CATEGORY_KEY } from '../../shared/config';
 import { useTranslation } from 'react-i18next';
+import { HighlightedText } from '../../shared/ui-kit/components/misc/HighlightedText';
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
@@ -40,8 +41,6 @@ const Statistics = tw.div`flex flex-wrap items-center sm:block mt-4 gap-[2rem]`;
 const Statistic = tw.div`text-left sm:inline-block sm:mr-12 last:mr-0 mt-4`;
 const Value = tw.div`font-bold text-lg sm:text-xl lg:text-2xl text-secondary-500 tracking-wide`;
 const Key = tw.div`font-medium text-primary-700`;
-
-const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
 
 const SwiperThumbs = styled(Swiper)`
   .swiper-slide {
