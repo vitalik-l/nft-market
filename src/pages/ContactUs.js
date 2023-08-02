@@ -1,11 +1,11 @@
-import React from "react";
-import AnimationRevealPage from "helpers/AnimationRevealPage.js";
-import tw from "twin.macro";
-import { css } from "styled-components/macro"; //eslint-disable-line
-import Header from "components/headers/light.js";
-import Footer from "components/footers/FiveColumnWithInputForm.js";
-import ContactUsForm from "components/forms/TwoColContactUsWithIllustrationFullForm.js";
-import ContactDetails from "components/cards/ThreeColContactDetails.js";
+import React from 'react';
+import AnimationRevealPage from 'shared/ui-kit/helpers/AnimationRevealPage.js';
+import tw from 'twin.macro';
+import { css } from 'styled-components/macro'; //eslint-disable-line
+import Header from 'shared/ui-kit/components/headers/light.js';
+import Footer from 'shared/ui-kit/components/footers/FiveColumnWithInputForm.js';
+import ContactUsForm from 'shared/ui-kit/components/forms/TwoColContactUsWithIllustrationFullForm.js';
+import ContactDetails from 'shared/ui-kit/components/cards/ThreeColContactDetails.js';
 
 const Address = tw.span`leading-relaxed`;
 const AddressLine = tw.span`block`;
@@ -20,7 +20,7 @@ export default () => {
       <ContactDetails
         cards={[
           {
-            title: "New York",
+            title: 'New York',
             description: (
               <>
                 <Address>
@@ -33,7 +33,7 @@ export default () => {
             )
           },
           {
-            title: "Illinois",
+            title: 'Illinois',
             description: (
               <>
                 <Address>
@@ -46,7 +46,7 @@ export default () => {
             )
           },
           {
-            title: "California",
+            title: 'California',
             description: (
               <>
                 <Address>
@@ -59,7 +59,7 @@ export default () => {
             )
           },
           {
-            title: "Tennessee",
+            title: 'Tennessee',
             description: (
               <>
                 <Address>
@@ -72,7 +72,7 @@ export default () => {
             )
           },
           {
-            title: "New Jersey",
+            title: 'New Jersey',
             description: (
               <>
                 <Address>
@@ -85,7 +85,7 @@ export default () => {
             )
           },
           {
-            title: "Ohio",
+            title: 'Ohio',
             description: (
               <>
                 <Address>

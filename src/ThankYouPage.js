@@ -1,16 +1,16 @@
-import React from "react";
-import AnimationRevealPage from "helpers/AnimationRevealPage.js";
-import { Container, Content2Xl } from "components/misc/Layouts";
-import tw from "twin.macro";
+import React from 'react';
+import AnimationRevealPage from 'shared/ui-kit/helpers/AnimationRevealPage.js';
+import { Container, Content2Xl } from 'shared/ui-kit/components/misc/Layouts';
+import tw from 'twin.macro';
 // eslint-disable-next-line
-import { css } from "styled-components/macro"; 
-import GitHubButton from "react-github-btn";
+import { css } from 'styled-components/macro';
+import GitHubButton from 'react-github-btn';
 
-import { LogoLink } from "components/headers/light.js";
-import { SectionHeading as HeadingBase } from "components/misc/Headings";
-import { SectionDescription as DescriptionBase } from "components/misc/Typography";
+import { LogoLink } from 'shared/ui-kit/components/headers/light.js';
+import { SectionHeading as HeadingBase } from 'shared/ui-kit/components/misc/Headings';
+import { SectionDescription as DescriptionBase } from 'shared/ui-kit/components/misc/Typography';
 
-import logo from "images/logo.svg";
+import logo from 'shared/ui-kit/images/logo.svg';
 
 /* Hero */
 const Row = tw.div`flex`;
@@ -29,16 +29,16 @@ export default () => {
    * Using gtag like this because we only want to use Google Analytics when Main Landing Page is rendered
    * Remove this part and the the gtag script inside public/index.html if you dont need google analytics
    */
-  window.gtag("js", new Date());
-  window.gtag("config", "UA-45799926-9");
+  window.gtag('js', new Date());
+  window.gtag('config', 'UA-45799926-9');
 
-  const downloadUrl = "/treact-ui.zip"
+  const downloadUrl = '/treact-ui.zip';
   React.useEffect(() => {
-    var iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.src = downloadUrl
+    var iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = downloadUrl;
     document.body.appendChild(iframe);
-  }, [])
+  }, []);
 
   return (
     <AnimationRevealPage disabled>
@@ -66,14 +66,20 @@ export default () => {
           </NavRow>
           <HeroRow>
             <Heading>Thank You!</Heading>
-            <Description tw="mt-12">Your Download Will Begin Shortly. If it does not, <NavLink href={downloadUrl} download>click this link</NavLink>.</Description>
+            <Description tw="mt-12">
+              Your Download Will Begin Shortly. If it does not,{' '}
+              <NavLink href={downloadUrl} download>
+                click this link
+              </NavLink>
+              .
+            </Description>
             <div tw="mt-12 text-center">
-              I am working on another library similar to Treact, with <span tw="font-bold">more components</span> and a much <span tw="font-bold">better developer
-              experience</span>.
+              I am working on another library similar to Treact, with <span tw="font-bold">more components</span> and a
+              much <span tw="font-bold">better developer experience</span>.
             </div>
             <div tw="mt-12 text-center">
-              If you liked Treact and would like to get updates on the library I am working on among other things, do <span tw="font-bold">follow</span> me on
-              Twitter/GitHub.
+              If you liked Treact and would like to get updates on the library I am working on among other things, do{' '}
+              <span tw="font-bold">follow</span> me on Twitter/GitHub.
               <div tw="mt-12 flex flex-col items-center">
                 <a
                   href="https://twitter.com/owaiswiz?ref_src=twsrc%5Etfw"

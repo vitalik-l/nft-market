@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import AnchorLink from "react-anchor-link-smooth-scroll";
-import { Rnd } from "react-rnd";
-import { motion } from "framer-motion";
-import { components } from "ComponentRenderer.js";
-import AnimationRevealPage from "helpers/AnimationRevealPage.js";
-import { Container, Content2Xl, ContentWithVerticalPadding } from "components/misc/Layouts";
-import tw from "twin.macro";
-import styled from "styled-components";
-import { css } from "styled-components/macro";
-import { LogoLink } from "components/headers/light.js";
-import { SectionHeading as HeadingBase } from "components/misc/Headings";
-import { SectionDescription as DescriptionBase } from "components/misc/Typography";
-import { PrimaryButton as PrimaryButtonBase } from "components/misc/Buttons.js";
+import React, { useState, useEffect } from 'react';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { Rnd } from 'react-rnd';
+import { motion } from 'framer-motion';
+import { components } from './shared/ui-kit/ComponentRenderer';
+import AnimationRevealPage from 'shared/ui-kit/helpers/AnimationRevealPage.js';
+import { Container, Content2Xl, ContentWithVerticalPadding } from 'shared/ui-kit/components/misc/Layouts';
+import tw from 'twin.macro';
+import styled from 'styled-components';
+import { css } from 'styled-components/macro';
+import { LogoLink } from 'shared/ui-kit/components/headers/light.js';
+import { SectionHeading as HeadingBase } from 'shared/ui-kit/components/misc/Headings';
+import { SectionDescription as DescriptionBase } from 'shared/ui-kit/components/misc/Typography';
+import { PrimaryButton as PrimaryButtonBase } from 'shared/ui-kit/components/misc/Buttons.js';
 
-import { ReactComponent as CheckboxIcon } from "feather-icons/dist/icons/check-circle.svg";
-import { ReactComponent as RadioIcon } from "feather-icons/dist/icons/radio.svg";
-import { ReactComponent as HandleIcon } from "images/handle-icon.svg";
-import { ReactComponent as ArrowRightIcon } from "images/arrow-right-3-icon.svg";
+import { ReactComponent as CheckboxIcon } from 'feather-icons/dist/icons/check-circle.svg';
+import { ReactComponent as RadioIcon } from 'feather-icons/dist/icons/radio.svg';
+import { ReactComponent as HandleIcon } from 'shared/ui-kit/images/handle-icon.svg';
+import { ReactComponent as ArrowRightIcon } from 'shared/ui-kit/images/arrow-right-3-icon.svg';
 
-import heroScreenshotImageSrc from "images/demo/MainLandingPageHero.png";
-import logo from "images/logo.svg";
-import useInView from "helpers/useInView";
+import heroScreenshotImageSrc from 'shared/ui-kit/images/demo/MainLandingPageHero.png';
+import logo from 'shared/ui-kit/images/logo.svg';
+import useInView from 'shared/ui-kit/helpers/useInView';
 
 /* Hero */
 const Row = tw.div`flex`;
@@ -29,11 +29,15 @@ const NavLink = tw.a`mt-4 lg:mt-0 transition duration-300 font-medium pb-1 borde
 const PrimaryNavLink = tw(
   NavLink
 )`text-gray-100 bg-primary-500 px-6 py-3 border-none rounded hocus:bg-primary-900 focus:shadow-outline mt-6 md:mt-4 lg:mt-0`;
-const HeroRow = tw(Row)`flex-col lg:flex-row justify-between items-center pt-8 lg:pt-12 pb-16 max-w-screen-2xl mx-auto flex-wrap`;
+const HeroRow = tw(
+  Row
+)`flex-col lg:flex-row justify-between items-center pt-8 lg:pt-12 pb-16 max-w-screen-2xl mx-auto flex-wrap`;
 
 const Column = tw.div`flex-1`;
 
-const UpdateNotice = tw(Column)`w-full flex-auto mb-4 sm:mb-8 rounded px-4 py-3 sm:px-5 sm:py-4 bg-orange-100 text-orange-800 flex items-center sm:items-start md:items-center justify-center lg:justify-start border border-orange-200 text-xs sm:text-sm text-center sm:text-left md:leading-none`;
+const UpdateNotice = tw(
+  Column
+)`w-full flex-auto mb-4 sm:mb-8 rounded px-4 py-3 sm:px-5 sm:py-4 bg-orange-100 text-orange-800 flex items-center sm:items-start md:items-center justify-center lg:justify-start border border-orange-200 text-xs sm:text-sm text-center sm:text-left md:leading-none`;
 const UpdateNoticeIcon = tw(RadioIcon)`w-0 sm:w-5 sm:mr-3`;
 
 const TextColumn = tw(Column)`mx-auto lg:mr-0 max-w-2xl lg:max-w-xl xl:max-w-2xl flex-shrink-0`;
@@ -66,7 +70,10 @@ const PreviewCardContainer = tw.div`mt-24 mx-auto md:mx-0 max-w-lg w-full md:w-1
 const PreviewCard = tw(motion.a)`block rounded-lg shadow-raised`;
 const PreviewCardImageContainer = tw.div`rounded-t-lg border-0 border-b-0`;
 const PreviewCardImage = styled(motion.div)`
-  ${props => css`background-image: url("${props.$imageSrc}");`}
+  ${(props) =>
+    css`
+      background-image: url('${props.$imageSrc}');
+    `}
   ${tw`h-128 md:h-144 bg-cover bg-left-top`}
 `;
 const PreviewButton = tw(PrimaryButtonBase)`w-full rounded-b-lg rounded-t-none py-5 font-semibold`;
@@ -89,33 +96,33 @@ const ResizeHandleButton = tw.button`cursor-col-resize focus:outline-none w-4 bo
 
 export default ({
   features = null,
-  primaryButtonUrl = "#landingPageDemos",
-  primaryButtonText = "Explore Demos",
-  secondaryButtonUrl = "#componentDemos",
-  secondaryButtonText = "View Components",
-  buttonRoundedCss = "",
+  primaryButtonUrl = '#landingPageDemos',
+  primaryButtonText = 'Explore Demos',
+  secondaryButtonUrl = '#componentDemos',
+  secondaryButtonText = 'View Components',
+  buttonRoundedCss = '',
   landingPages = components.landingPages,
   innerPages = components.innerPages,
   blocks = components.blocks,
-  heading = "Free Modern React Templates for every need.",
-  description = "Easily customizable modern React UI Templates and Components built using TailwindCSS which are also lightweight and simple to setup. All components are modular and fully responsive for great mobile experience as well as big desktop screens.  Brand Colors are also fully customizable. Free for personal as well as commercial use."
+  heading = 'Free Modern React Templates for every need.',
+  description = 'Easily customizable modern React UI Templates and Components built using TailwindCSS which are also lightweight and simple to setup. All components are modular and fully responsive for great mobile experience as well as big desktop screens.  Brand Colors are also fully customizable. Free for personal as well as commercial use.'
 }) => {
   /*
    * Using gtag like this because we only want to use Google Analytics when Main Landing Page is rendered
    * Remove this part and the the gtag script inside public/index.html if you dont need google analytics
    */
   useEffect(() => {
-    window.gtag("js", new Date());
-    window.gtag("config", "UA-45799926-9");
-  }, [])
+    window.gtag('js', new Date());
+    window.gtag('config', 'UA-45799926-9');
+  }, []);
 
   const previewImageAnimationVariants = {
     rest: {
-      backgroundPositionY: "0%"
+      backgroundPositionY: '0%'
     },
     hover: {
-      backgroundPositionY: "100%",
-      transition: { type: "tween", ease: "linear", duration: 5 }
+      backgroundPositionY: '100%',
+      transition: { type: 'tween', ease: 'linear', duration: 5 }
     }
   };
 
@@ -127,9 +134,9 @@ export default ({
     `${noOfLandingPages} Landing Page Demos`,
     `${noOfInnerPages} Inner Pages`,
     `${noOfComponentBlocks} Components`,
-    "Uses TailwindCSS",
-    "Fully Responsive",
-    "Fully Customizable"
+    'Uses TailwindCSS',
+    'Fully Responsive',
+    'Fully Customizable'
   ];
 
   return (
@@ -201,7 +208,7 @@ export default ({
                   <PreviewCard initial="rest" animate="rest" whileHover="hover" href={page.url} target="_blank">
                     <PreviewCardImageContainer>
                       <PreviewCardImage
-                        transition={{ type: "tween" }}
+                        transition={{ type: 'tween' }}
                         variants={previewImageAnimationVariants}
                         $imageSrc={page.imageSrc}
                       />
@@ -224,7 +231,7 @@ export default ({
                   <PreviewCard initial="rest" animate="rest" whileHover="hover" href={page.url} target="_blank">
                     <PreviewCardImageContainer>
                       <PreviewCardImage
-                        transition={{ type: "tween" }}
+                        transition={{ type: 'tween' }}
                         variants={!page.scrollAnimationDisabled && previewImageAnimationVariants}
                         $imageSrc={page.imageSrc}
                       />
@@ -242,9 +249,7 @@ export default ({
               We also provide {noOfComponentBlocks} components along with the premade landing pages so you can create
               your own landing page within minutes as you see fit. You can combine these components to create 1000s of
               unique attractive web pages.
-              <span tw="block text-sm text-gray-500 mt-2">
-                (Preview Panel below inspired by Tailwind UI)
-              </span>
+              <span tw="block text-sm text-gray-500 mt-2">(Preview Panel below inspired by Tailwind UI)</span>
             </SectionDescription>
             <BlocksRenderer blocks={Object.values(blocks)} />
           </SectionContainer>
@@ -257,8 +262,8 @@ export default ({
 const BlocksRenderer = ({ blocks }) => {
   const [lastVisibleBlockIndex, setLastVisibleBlockIndex] = useState(0);
 
-  const updateLastVisibleBlockIndex = index => {
-    console.log("LAST WAS ", lastVisibleBlockIndex);
+  const updateLastVisibleBlockIndex = (index) => {
+    console.log('LAST WAS ', lastVisibleBlockIndex);
     if (index > lastVisibleBlockIndex) setLastVisibleBlockIndex(index);
   };
 
@@ -289,9 +294,9 @@ const Block = ({ notifyIsVisible, components }) => {
 
   const componentBlockRefs = {};
 
-  const updateComponentBlockIframeHeight = iframe => {
-    iframe.style.height = "auto";
-    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+  const updateComponentBlockIframeHeight = (iframe) => {
+    iframe.style.height = 'auto';
+    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
   };
 
   return (
@@ -303,7 +308,7 @@ const Block = ({ notifyIsVisible, components }) => {
             <ComponentHeading>
               <ComponentName>{component.name}</ComponentName>
               <ComponentPreviewLink className="group" href={component.url} target="_blank">
-                View Live Demo{" "}
+                View Live Demo{' '}
                 <ArrowRightIcon tw="transition duration-300 transform group-hover:translate-x-px ml-2 w-4 h-4" />
               </ComponentPreviewLink>
             </ComponentHeading>
@@ -311,8 +316,8 @@ const Block = ({ notifyIsVisible, components }) => {
               <ResizableBox
                 minWidth={310}
                 default={{
-                  width: "100%",
-                  height: "100%"
+                  width: '100%',
+                  height: '100%'
                 }}
                 bounds="parent"
                 disableDragging={true}
@@ -325,8 +330,8 @@ const Block = ({ notifyIsVisible, components }) => {
                   src={component.url}
                   title="Hero"
                   width="100%"
-                  ref={ref => (componentBlockRefs[component.url] = ref)}
-                  onLoad={e => updateComponentBlockIframeHeight(e.target)}
+                  ref={(ref) => (componentBlockRefs[component.url] = ref)}
+                  onLoad={(e) => updateComponentBlockIframeHeight(e.target)}
                 />
               </ResizableBox>
             </ComponentContent>

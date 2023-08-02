@@ -1,20 +1,20 @@
-import React from "react";
-import AnimationRevealPage from "helpers/AnimationRevealPage.js";
-import tw from "twin.macro";
-import styled from "styled-components"; //eslint-disable-line
-import { css } from "styled-components/macro"; //eslint-disable-line
-import Header from "components/headers/light.js";
-import Footer from "components/footers/FiveColumnWithInputForm.js";
-import MainFeature1 from "components/features/TwoColWithButton.js";
+import React from 'react';
+import AnimationRevealPage from 'shared/ui-kit/helpers/AnimationRevealPage.js';
+import tw from 'twin.macro';
+import styled from 'styled-components'; //eslint-disable-line
+import { css } from 'styled-components/macro'; //eslint-disable-line
+import Header from 'shared/ui-kit/components/headers/light.js';
+import Footer from 'shared/ui-kit/components/footers/FiveColumnWithInputForm.js';
+import MainFeature1 from 'shared/ui-kit/components/features/TwoColWithButton.js';
 // import MainFeature2 from "components/features/TwoColSingleFeatureWithStats.js";
 // import MainFeature3 from "components/features/TwoColSingleFeatureWithStats2.js";
-import Features from "components/features/ThreeColSimple.js";
+import Features from 'shared/ui-kit/components/features/ThreeColSimple.js';
 // import Features from "components/features/ThreeColWithSideImage.js";
-import TeamCardGrid from "components/cards/ProfileThreeColGrid.js";
+import TeamCardGrid from 'shared/ui-kit/components/cards/ProfileThreeColGrid.js';
 
-import SupportIconImage from "images/support-icon.svg";
-import ShieldIconImage from "images/shield-icon.svg";
-import CustomerLoveIconImage from "images/simple-icon.svg";
+import SupportIconImage from 'shared/ui-kit/images/support-icon.svg';
+import ShieldIconImage from 'shared/ui-kit/images/shield-icon.svg';
+import CustomerLoveIconImage from 'shared/ui-kit/images/simple-icon.svg';
 
 const Subheading = tw.span`uppercase tracking-wider text-sm`;
 export default () => {
@@ -43,25 +43,23 @@ export default () => {
         cards={[
           {
             imageSrc: SupportIconImage,
-            title: "24/7 Support",
-            description: "Lorem ipsum donor amet siti ceali placeholder text alipiscing elit sed do eiusmod temport"
+            title: '24/7 Support',
+            description: 'Lorem ipsum donor amet siti ceali placeholder text alipiscing elit sed do eiusmod temport'
           },
           {
             imageSrc: ShieldIconImage,
-            title: "Strong Teams",
-            description: "Lorem ipsum donor amet siti ceali placeholder text alipiscing elit sed do eiusmod temport"
+            title: 'Strong Teams',
+            description: 'Lorem ipsum donor amet siti ceali placeholder text alipiscing elit sed do eiusmod temport'
           },
           {
             imageSrc: CustomerLoveIconImage,
-            title: "Customer Satisfaction",
-            description: "Lorem ipsum donor amet siti ceali placeholder text alipiscing elit sed do eiusmod temport"
-          },
+            title: 'Customer Satisfaction',
+            description: 'Lorem ipsum donor amet siti ceali placeholder text alipiscing elit sed do eiusmod temport'
+          }
         ]}
         linkText=""
       />
-      <TeamCardGrid 
-        subheading={<Subheading>Our Team</Subheading>}
-      />
+      <TeamCardGrid subheading={<Subheading>Our Team</Subheading>} />
       <Footer />
     </AnimationRevealPage>
   );
