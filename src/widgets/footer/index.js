@@ -11,9 +11,9 @@ const Content = tw.div`max-w-screen-xl mx-auto relative z-10`;
 
 const ThreeColRow = tw.div`flex flex-col md:flex-row items-center justify-between`;
 
-const LogoContainer = tw.div`flex items-center justify-center md:justify-start`;
+const LogoContainer = tw.div`flex items-center justify-center md:justify-start gap-2 text-lg`;
 const LogoImg = tw.img`w-8`;
-const LogoText = tw.h5`ml-2 text-xl font-black tracking-wider text-gray-800`;
+const LogoText = tw.h5`font-black tracking-wider text-gray-800`;
 
 const CopywrightNotice = tw.p`text-center text-sm sm:text-base mt-8 md:mt-0 font-medium text-gray-500`;
 
@@ -31,6 +31,7 @@ export const Footer = () => {
       <Content>
         <ThreeColRow>
           <LogoContainer>
+            <LogoText>Powered by</LogoText>
             <LogoImg src="/images/polygon.svg" />
             <LogoText>Polygon</LogoText>
           </LogoContainer>
