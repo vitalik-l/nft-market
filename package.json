@@ -18,6 +18,7 @@
     "effector-react": "^22.5.3",
     "feather-icons": "^4.29.0",
     "framer-motion": "^7.3.2",
+    "gh-pages": "^5.0.0",
     "i18next": "^23.4.1",
     "react": "^18.0.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
@@ -38,11 +39,13 @@
     "viem": "^1.2.9"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy:gh": "gh-pages -d build",
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts build",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && netlify deploy --prod --dir=build"
+    "deploy:netlify": "yarn build && netlify deploy --prod --dir=build"
   },
   "eslintConfig": {
     "extends": "react-app",
