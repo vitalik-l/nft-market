@@ -55,7 +55,7 @@ const $modalOpen = createStore(false)
     if (value === undefined) return !state;
     return value;
   })
-  .reset(connectFx);
+  .reset(connectFx.done);
 
 const $account = createStore({}).on(accountChanged, (_, data) => data);
 
@@ -64,6 +64,13 @@ const $network = createStore({}).on(networkChanged, (_, data) => data);
 const $connected = $account.map((account) => !!account?.address);
 
 const $isSupportedNetwork = $network.map((network) => network?.chains?.some((item) => item?.id === network?.chain?.id));
+
+const $isConnecting = createStore({ metamask: false, walletConnect: false })
+  .on(connectFx, (state, payload) => {
+    return { ...state, [payload]: true };
+  })
+  .on(connectFx.done, (state, { params }) => ({ ...state, [params]: false }))
+  .on(connectFx.fail, (state, { params }) => ({ ...state, [params]: false }));
 
 export const walletModel = {
   $modalOpen,
@@ -76,5 +83,6 @@ export const walletModel = {
   $connected,
   $network,
   $isSupportedNetwork,
-  switchNetworkFx
+  switchNetworkFx,
+  $isConnecting
 };

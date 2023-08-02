@@ -1,6 +1,6 @@
-import { polygonMumbai } from '@wagmi/core/chains';
+import { polygonMumbai, polygon } from '@wagmi/core/chains';
 
-export const CHAIN_CONFIG = { 80001: polygonMumbai }[process.env.REACT_APP_CHAIN_ID];
+export const CHAIN_CONFIG = { 80001: polygonMumbai, 137: polygon }[process.env.REACT_APP_CHAIN_ID];
 
 export const NFT_FACTORY_ADDRESS = process.env.REACT_APP_ADDRESS_NFT_FACTORY;
 

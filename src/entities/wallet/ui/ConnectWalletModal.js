@@ -4,28 +4,33 @@ import 'styled-components/macro';
 import { walletModel } from '../model';
 import { Modal } from '../../../shared/ui-kit/components/misc/Modal';
 import { useUnit } from 'effector-react';
-import { OutlinedButton } from '../../../shared/ui-kit/components/misc/Buttons';
+import { Button } from '../../../shared/ui-kit/components/misc/Buttons';
 
 export const ConnectWalletModal = () => {
   const modalOpen = useUnit(walletModel.$modalOpen);
+  const isConnecting = useUnit(walletModel.$isConnecting);
 
   return (
     <Modal open={modalOpen} onClose={() => walletModel.toggleModal(false)} title="Connect a Wallet">
       <div tw="grid p-3 gap-2">
-        <OutlinedButton
+        <Button
           onClick={() => walletModel.connectFx('metamask')}
           icon={<img src="/images/metamask.svg" tw="w-[1.5em] h-[1.5em]" />}
+          loading={isConnecting?.metamask}
+          tw="justify-between"
         >
           Metamask
-        </OutlinedButton>
-        <OutlinedButton
+        </Button>
+        <Button
           onClick={() => {
             walletModel.connectFx('walletConnect');
           }}
           icon={<img src="/images/walletconnect.svg" tw="w-[1.5em] h-[1.5em]" />}
+          loading={isConnecting?.walletConnect}
+          tw="justify-between"
         >
           Wallet Connect
-        </OutlinedButton>
+        </Button>
       </div>
     </Modal>
   );
