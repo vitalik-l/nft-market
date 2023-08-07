@@ -1,6 +1,5 @@
-import { ReactComponent as FacebookIcon } from '../../shared/ui-kit/images/facebook-icon.svg';
 import { ReactComponent as TwitterIcon } from '../../shared/ui-kit/images/twitter-icon.svg';
-import { ReactComponent as YoutubeIcon } from '../../shared/ui-kit/images/youtube-icon.svg';
+import { ReactComponent as TelegramIcon } from '../../shared/ui-kit/images/telegram-icon.svg';
 import React from 'react';
 import tw from 'twin.macro';
 import 'styled-components/macro';
@@ -37,14 +36,11 @@ export const Footer = () => {
           </LogoContainer>
           <CopywrightNotice>&copy; 2023 Agedor. All Rights Reserved.</CopywrightNotice>
           <SocialLinksContainer>
-            <SocialLink href="https://facebook.com">
-              <FacebookIcon />
+            <SocialLink href="https://t.me/agedor" target="_blank">
+              <TelegramIcon />
             </SocialLink>
-            <SocialLink href="https://twitter.com">
+            <SocialLink href="https://twitter.com/agedorgallery?s=21&t=UfsBXRsqMNbR6y-bWd3p9g" target="_blank">
               <TwitterIcon />
-            </SocialLink>
-            <SocialLink href="https://youtube.com">
-              <YoutubeIcon />
             </SocialLink>
           </SocialLinksContainer>
         </ThreeColRow>

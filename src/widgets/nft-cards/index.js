@@ -11,11 +11,12 @@ import { NftCard } from 'entities/collections/ui';
 import { Spinner } from '../../shared/ui-kit';
 import { CATEGORIES, CATEGORIES_KEYS } from '../../shared/config';
 import { Link } from 'react-router-dom';
-import { useUnit } from 'effector-react';
+import { useGate, useUnit } from 'effector-react';
 import { collectionsModel } from '../../entities/collections';
 import { SortingSelect } from './SortingSelect';
 import { useTranslation } from 'react-i18next';
 import { PrimaryButton } from '../../shared/ui-kit/components/misc/Buttons';
+import { nftCardsModel } from './model';
 
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
 const Header = tw(SectionHeading)``;
@@ -42,7 +43,8 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 
 export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onChange }) => {
   const { t } = useTranslation();
-  const items = useUnit(collectionsModel.$collections)?.categoriesAddresses;
+  useGate(nftCardsModel.NftCardsGate, { activeTab });
+  const items = useUnit(nftCardsModel.$sortedItems);
   const pending = useUnit(collectionsModel.collectionsListFx.pending);
 
   return (
@@ -54,7 +56,7 @@ export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onCh
             <TabsControl>
               {CATEGORIES_KEYS.map((category, index) => (
                 <TabControl
-                  key={index}
+                  key={category}
                   active={activeTab === category}
                   onClick={asLink ? undefined : () => onChange?.(category)}
                   as={asLink ? Link : undefined}
@@ -72,7 +74,7 @@ export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onCh
         {!pending &&
           CATEGORIES_KEYS.map((category, index) => (
             <TabContent
-              key={index}
+              key={category}
               variants={{
                 current: {
                   opacity: 1,
@@ -89,8 +91,8 @@ export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onCh
               initial={activeTab === category ? 'current' : 'hidden'}
               animate={activeTab === category ? 'current' : 'hidden'}
             >
-              {items[CATEGORIES[category]]?.length ? (
-                items[CATEGORIES[category]]?.map((address, index) => <NftCard key={index} address={address} />)
+              {items[category]?.length ? (
+                items[category]?.map((address, index) => <NftCard key={address} address={address} />)
               ) : (
                 <div tw="m-auto">{t('There are no items yet')}</div>
               )}

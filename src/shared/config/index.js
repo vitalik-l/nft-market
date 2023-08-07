@@ -6,6 +6,7 @@ export const NFT_FACTORY_ADDRESS = process.env.REACT_APP_ADDRESS_NFT_FACTORY;
 
 export const CATEGORIES = { celebrity_items: 'celebrity items', artwork: 'artwork', modern_art: 'modern art' };
 export const CATEGORIES_KEYS = Object.keys(CATEGORIES);
+
 export const CATEGORY_KEY = CATEGORIES_KEYS.reduce((acc, key) => {
   acc[CATEGORIES[key]] = key;
   return acc;

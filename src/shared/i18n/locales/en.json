@@ -1,8 +1,8 @@
 {
   "sort": {
-    "price_asc": "Price low to high",
-    "price_desc": "Price high to low",
-    "popular_asc": "Popularity low to high",
-    "popular_desc": "Popularity high to low"
+    "PRICE_ASC": "Price low to high",
+    "PRICE_DESC": "Price high to low",
+    "POPULAR_ASC": "Popularity low to high",
+    "POPULAR_DESC": "Popularity high to low"
   }
 }

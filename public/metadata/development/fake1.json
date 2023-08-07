@@ -1,0 +1,43 @@
+{
+  "address": "fake1",
+  "priceDollar": 1,
+  "amountLimit": 100,
+  "tokenId": 9,
+  "category": "celebrity items",
+  "name": {
+    "en": "Fake Hockey helmet Alexander Ovechkin",
+    "fr": "Casque de hockey Alexander Ovechkin",
+    "es": "Casco de hockey Alexander Ovechkin"
+  },
+  "descriptionShort": {
+    "en": "Alexander Ovechkin's helmet, signed by the 2018 Stanley Cup-winning gold Washington Capitals. Numbered - the NHL Association released only 12 copies. the presented helmet is 9 out of 12.",
+    "fr": "Le casque d'Alexander Ovechkin, signé par les Capitals de Washington, vainqueurs de la Coupe Stanley en 2018. Numéroté - l'Association de la LNH n'a publié que 12 exemplaires. le casque présenté est 9 sur 12.",
+    "es": "El casco de Alexander Ovechkin, firmado por los Washington Capitals de oro, ganadores de la Copa Stanley 2018. Numerado: la Asociación NHL lanzó solo 12 copias. el casco presentado es 9 de 12."
+  },
+  "description": {
+    "en": "Alexander Ovechkin helmet signed by the 2018 Stanley Cup winner Washington Capitals. Numbered - The NHL Association released only 12 copies. presented helmet 9 out of 12. In 2023, Alexander Ovechkin got close to Gretzky's eternal records. Which positively affected the price of this collectible. Each owner of a fractional NFT receives a 3D model of an object for the metaverses.",
+    "fr": "Casque Alexander Ovechkin signé par le vainqueur de la Coupe Stanley 2018 des Capitals de Washington. Numéroté - L'Association de la LNH n'a publié que 12 exemplaires. casque présenté 9 sur 12. En 2023, Alexander Ovechkin s'est rapproché des records éternels de Gretzky. Ce qui a eu un impact positif sur le prix de cet objet de collection. Chaque propriétaire d'un NFT fractionnaire reçoit un modèle 3D d'un objet pour les métaverses.",
+    "es": "Casco Alexander Ovechkin firmado por el ganador de la Copa Stanley 2018 Washington Capitals. Numerado: la Asociación NHL lanzó solo 12 copias. presentó casco 9 de 12. En 2023, Alexander Ovechkin se acercó a los récords eternos de Gretzky. Lo que afectó positivamente el precio de este coleccionable. Cada propietario de un NFT fraccional recibe un modelo 3D de un objeto para los metaversos."
+  },
+  "media": [
+    {
+      "url": "https://ipfs.io/ipfs/QmRPn26M2PX2MvZymDP49FcR49ZcU4e8tH9WVCERHrxGFg"
+    },
+    {
+      "url": "/gallery/IMG_7146.MOV",
+      "type": "video"
+    },
+    {
+      "url": "https://ipfs.io/ipfs/QmRFLvDDNnHwcDerpR5ZvduaNYwTx1ckiQzPCp8qcjQifd"
+    },
+    {
+      "url": "https://ipfs.io/ipfs/QmYVH7RGU6ueJJGMqzmRzWcKKsMKJDKjvDjf7GMRYfW9t1"
+    },
+    {
+      "url": "https://ipfs.io/ipfs/QmSuu3c2K8vAUjQiHjzckeAbZ4YAXnrApgDEnTp2jPJpym"
+    },
+    {
+      "url": "https://ipfs.io/ipfs/QmaH6ffhKTgboHGYEzsnka3jAbZv8Fz5zdWxygptGpXgPK"
+    }
+  ]
+}

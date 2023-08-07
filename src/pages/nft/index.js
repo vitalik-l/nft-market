@@ -52,6 +52,14 @@ const SwiperThumbs = styled(Swiper)`
   }
 `;
 
+const Video = ({ src }) => {
+  return (
+    <video src={src} tw="m-auto">
+      video
+    </video>
+  );
+};
+
 export const NftPage = () => {
   const {
     i18n: { language }
@@ -96,11 +104,15 @@ export const NftPage = () => {
                   modules={[Navigation, Thumbs, FreeMode]}
                   navigation
                   thumbs={{ swiper: thumbsSwiper }}
-                  style={{ '--swiper-navigation-sides-offset': '0' }}
+                  style={{ '--swiper-navigation-sides-offset': '-10px' }}
                 >
                   {metadata.media?.map((item) => (
                     <SwiperSlide key={item?.url}>
-                      <img src={item?.url} css={tw`rounded-4xl bg-cover m-auto`} alt="" />
+                      {item?.type === 'video' ? (
+                        <Video src={item?.url} />
+                      ) : (
+                        <img src={item?.url} css={tw`rounded-4xl bg-cover m-auto`} alt="" />
+                      )}
                     </SwiperSlide>
                   ))}
                 </Swiper>
