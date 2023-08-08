@@ -30,6 +30,7 @@ const parseMetadata = (data) => {
         url: item?.url,
         type: item?.type
       })) ?? [],
+    model: data?.model,
 
     // taken from contract
     priceDollar: data?.priceDollar,

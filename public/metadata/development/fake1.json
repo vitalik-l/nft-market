@@ -4,6 +4,7 @@
   "amountLimit": 100,
   "tokenId": 9,
   "category": "celebrity items",
+  "model": "https://ipfs.io/ipfs/Qmbq7rrq31VfKA6htYmdteyQmGpLrB7Qg5KQMdc62eZQ5t?filename=NHL.stl",
   "name": {
     "en": "Fake Hockey helmet Alexander Ovechkin",
     "fr": "Casque de hockey Alexander Ovechkin",

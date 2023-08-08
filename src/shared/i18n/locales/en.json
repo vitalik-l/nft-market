@@ -4,5 +4,6 @@
     "PRICE_DESC": "Price high to low",
     "POPULAR_ASC": "Popularity low to high",
     "POPULAR_DESC": "Popularity high to low"
-  }
+  },
+  "downloadModel": "Download 3-D model"
 }
