@@ -112,6 +112,7 @@ import { NftPage } from '../pages/nft';
 import { ProfilePage } from '../pages/profile';
 import * as Toast from '@radix-ui/react-toast';
 import { CollectionsPage } from '../pages/collections';
+import { UserAgreementPage } from '../pages/user-agreement';
 
 export default function App() {
   // If you want to disable the animation just use the disabled `prop` like below on your page's component
@@ -139,6 +140,7 @@ export default function App() {
             }
           />
           <Route path="/collections/:collection?" element={<CollectionsPage />} />
+          <Route path="/user-agreement" element={<UserAgreementPage />} />
         </Routes>
       </Router>
       <ConnectWalletModal />
