@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import GlobalStyles from 'app/styles/GlobalStyles';
 import { css } from 'styled-components/macro'; //eslint-disable-line
 import './styles/index.css';
@@ -105,7 +105,7 @@ import ComponentRenderer from '../shared/ui-kit/ComponentRenderer';
 import MainLandingPage from '../MainLandingPage';
 import ThankYouPage from '../ThankYouPage';
 
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HomePage } from '../pages/home';
 import { ConnectedGuard, ConnectWalletModal } from '../entities/wallet';
 import { NftPage } from '../pages/nft';
@@ -113,6 +113,14 @@ import { ProfilePage } from '../pages/profile';
 import * as Toast from '@radix-ui/react-toast';
 import { CollectionsPage } from '../pages/collections';
 import { UserAgreementPage } from '../pages/user-agreement';
+
+const ScrollToTop = () => {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+  return null;
+};
 
 export default function App() {
   // If you want to disable the animation just use the disabled `prop` like below on your page's component
@@ -122,6 +130,7 @@ export default function App() {
     <Toast.Provider swipeDirection="right">
       <GlobalStyles />
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/template" element={<Navigate to="/components/landingPages/RestaurantLandingPage" />} />
           <Route path="/components/:type/:subtype/:name" element={<ComponentRenderer />} />
