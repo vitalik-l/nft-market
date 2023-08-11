@@ -120,7 +120,7 @@ export const NftPage = () => {
                   freeMode={true}
                   watchSlidesProgress={true}
                   modules={[FreeMode, Navigation, Thumbs]}
-                  tw="mt-6"
+                  tw="mt-6 px-[24px]"
                   navigation
                 >
                   {metadata.media?.map((item) => (

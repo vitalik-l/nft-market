@@ -134,7 +134,7 @@ export default function App() {
           <Route
             path="/account/:address"
             element={
-              <ConnectedGuard>
+              <ConnectedGuard fallback={<Navigate to="/" />}>
                 <ProfilePage />
               </ConnectedGuard>
             }

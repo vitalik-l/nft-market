@@ -9,22 +9,24 @@ import React from 'react';
 import AnimationRevealPage from '../../../shared/ui-kit/helpers/AnimationRevealPage';
 import { Footer } from '../../../widgets/footer';
 
-export const ConnectedGuard = ({ children }) => {
+export const ConnectedGuard = ({ children, fallback }) => {
   const connected = useUnit(walletModel.$connected);
 
   if (!connected) {
     return (
-      <AnimationRevealPage>
-        <Header />
-        <Container slideClassName="flex-1">
-          <ContentWithPaddingXl>
-            <div css={tw`flex justify-center`}>
-              <ConnectWalletButton />
-            </div>
-          </ContentWithPaddingXl>
-        </Container>
-        <Footer />
-      </AnimationRevealPage>
+      fallback ?? (
+        <AnimationRevealPage>
+          <Header />
+          <Container slideClassName="flex-1">
+            <ContentWithPaddingXl>
+              <div css={tw`flex justify-center`}>
+                <ConnectWalletButton />
+              </div>
+            </ContentWithPaddingXl>
+          </Container>
+          <Footer />
+        </AnimationRevealPage>
+      )
     );
   }
 
