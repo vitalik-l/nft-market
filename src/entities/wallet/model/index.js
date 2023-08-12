@@ -63,7 +63,7 @@ const $network = createStore({}).on(networkChanged, (_, data) => data);
 
 const $connected = $account.map((account) => !!account?.address);
 
-const $isSupportedNetwork = $network.map((network) => network?.chains?.some((item) => item?.id === network?.chain?.id));
+const $isSupportedNetwork = $network.map((network) => !!network?.chain && !network.chain?.unsupported);
 
 const $isConnecting = createStore({ metamask: false, walletConnect: false })
   .on(connectFx, (state, payload) => {
