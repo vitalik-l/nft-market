@@ -5,5 +5,7 @@
     "POPULAR_ASC": "Popularity low to high",
     "POPULAR_DESC": "Popularity high to low"
   },
-  "downloadModel": "Download 3-D model"
+  "downloadModel": "Download 3-D model",
+  "confirmInWallet": "Confirm transaction in the wallet.",
+  "waitingForTransaction": "Waiting for transaction..."
 }

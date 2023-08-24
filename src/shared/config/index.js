@@ -12,12 +12,19 @@ export const CATEGORY_KEY = CATEGORIES_KEYS.reduce((acc, key) => {
   return acc;
 }, {});
 
-export const STABLECOIN_ADDRESS = {
+export const STABLECOIN = {
   USDT: process.env.REACT_APP_ADDRESS_USDT,
-  USDC: process.env.REACT_APP_ADDRESS_USDC
+  USDC: process.env.REACT_APP_ADDRESS_USDC,
+  [process.env.REACT_APP_ADDRESS_USDT]: 'USDT',
+  [process.env.REACT_APP_ADDRESS_USDC]: 'USDC'
 };
 
 export const ALCHEMY_API_KEY = process.env.REACT_APP_ALCHEMY_API_KEY;
 export const WALLET_CONNECT_PROJECT_ID = process.env.REACT_APP_WALLET_CONNECT_PROJECT_ID;
 
 export const MaxUint256 = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+
+export const SCANNER_URL = {
+  80001: 'https://mumbai.polygonscan.com/',
+  137: 'https://polygonscan.com/'
+};

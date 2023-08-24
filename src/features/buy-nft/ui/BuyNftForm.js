@@ -9,9 +9,11 @@ import { Select } from '../../../shared/ui-kit/components/misc/Select';
 import { Label } from '../../../shared/ui-kit/components/misc/Label';
 import { useMemo } from 'react';
 import { collectionsModel } from '../../../entities/collections';
-import { Toast } from '../../../shared/ui-kit/components/misc/Toast';
+import { ErrorToast, Toast } from '../../../shared/ui-kit/components/misc/Toast';
 import { walletModel } from '../../../entities/wallet/model';
 import { CHAIN_CONFIG } from '../../../shared/config';
+import { CrossCircledIcon } from '@radix-ui/react-icons';
+import { useTranslation } from 'react-i18next';
 
 const defaultValues = {
   currency: 'USDT',
@@ -19,6 +21,7 @@ const defaultValues = {
 };
 
 export const BuyNftForm = ({ nftAddress, className }) => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -30,7 +33,9 @@ export const BuyNftForm = ({ nftAddress, className }) => {
   const price = collectionsModel.usePriceDollar(nftAddress);
   const tokenId = collectionsModel.useTokenId(nftAddress);
   const amountLimit = collectionsModel.useAmountLimit(nftAddress);
-  const mintErrorToast = useUnit(buyNftModel.$mintErrorToast);
+  const mintErrorMessage = useUnit(buyNftModel.$mintErrorMessage);
+  const mintLoading = useUnit(buyNftModel.mintStatus.$loading);
+  const approveLoading = useUnit(buyNftModel.approveStatus.$loading);
   const isSupportedNetwork = useUnit(walletModel.$isSupportedNetwork);
   const available = (amountLimit.value ?? 0) - (tokenId.value ?? 0);
   const currency = watch('currency');
@@ -43,16 +48,16 @@ export const BuyNftForm = ({ nftAddress, className }) => {
     : approved
     ? `Buy for ${fullPrice} ${currency}`
     : `Approve ${currency}`;
-  const loading = allowancePending || isSubmitting;
+  const loading = allowancePending || isSubmitting || mintLoading || approveLoading;
 
   const onSubmit = ({ currency, amount }) => {
     if (!isSupportedNetwork) {
       return walletModel.switchNetworkFx({ chainId: CHAIN_CONFIG.id });
     }
     if (!approved) {
-      return buyNftModel.approveFx({ nftAddress, currency }).catch(() => {});
+      return buyNftModel.approve({ nftAddress, currency });
     }
-    return buyNftModel.mintFx({ nftAddress, currency, amount }).catch(() => {});
+    buyNftModel.mint({ nftAddress, currency, amount });
   };
 
   return (
@@ -95,14 +100,11 @@ export const BuyNftForm = ({ nftAddress, className }) => {
       <Button type="submit" css={tw`mt-3`} loading={loading}>
         {submitLabel}
       </Button>
-      <Toast
-        title="Error"
-        open={!!mintErrorToast}
-        duration={Infinity}
+      <ErrorToast
+        open={!!mintErrorMessage}
         onOpenChange={() => buyNftModel.closeMintErrorToast()}
-      >
-        {mintErrorToast}
-      </Toast>
+        message={mintErrorMessage}
+      />
     </form>
   );
 };

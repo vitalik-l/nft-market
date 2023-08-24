@@ -51,8 +51,8 @@ const $pending = combine([collectionsModel.collectionsListFx.pending, nftBalance
 
 // fetch balances when bought nft
 sample({
-  clock: buyNftModel.mintFx.done,
   source: walletModel.$account,
+  clock: buyNftModel.mintStatus.done,
   fn: (account, { params }) => ({ account: account?.address, addresses: [params?.nftAddress] }),
   target: nftBalancesFx
 });

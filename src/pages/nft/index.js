@@ -5,7 +5,7 @@ import { Header } from '../../widgets/header';
 import AnimationRevealPage from '../../shared/ui-kit/helpers/AnimationRevealPage';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { SectionHeading, Subheading as SubheadingBase } from '../../shared/ui-kit/components/misc/Headings';
+import { SectionHeading } from '../../shared/ui-kit/components/misc/Headings';
 import { useParams } from 'react-router-dom';
 import { collectionsModel } from '../../entities/collections';
 import { Spinner } from 'shared/ui-kit';

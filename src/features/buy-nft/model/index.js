@@ -1,75 +1,69 @@
 import { combine, createEffect, createEvent, createStore, sample } from 'effector';
-import { readContract, prepareWriteContract, writeContract, waitForTransaction } from '@wagmi/core';
+import { readContract } from '@wagmi/core';
 import { erc20Abi, nftAbi } from '../../../shared/abi';
-import { MaxUint256, STABLECOIN_ADDRESS } from '../../../shared/config';
+import { MaxUint256, STABLECOIN } from '../../../shared/config';
 import { logFxError } from '../../../shared/lib/log-fx-error';
 import { walletModel } from '../../../entities/wallet/model';
 import { createGate } from 'effector-react';
 import { collectionsModel } from '../../../entities/collections';
+import { $tx, txFulfilled, writeContractFx } from '../../../shared/lib/wagmi-effector';
+import { createFxStatus } from './create-fx-status';
 
 const BuyNftGate = createGate();
 
 const allowanceFx = createEffect(async ({ currency = 'USDT', accountAddress, nftAddress }) => {
   return readContract({
     abi: erc20Abi,
-    address: STABLECOIN_ADDRESS[currency],
+    address: STABLECOIN[currency],
     args: [accountAddress, nftAddress],
     functionName: 'allowance'
   });
 });
 allowanceFx.fail.watch(logFxError('allowanceFx'));
 
-const approveFx = createEffect(async ({ nftAddress, currency, amount }) => {
-  const { request } = await prepareWriteContract({
-    address: STABLECOIN_ADDRESS[currency],
-    abi: erc20Abi,
-    functionName: 'approve',
-    args: [nftAddress, amount || MaxUint256]
-  });
-  const { hash } = await writeContract(request);
-  return waitForTransaction({ hash });
-});
-approveFx.fail.watch(logFxError('approveFx'));
+const mint = writeContractFx.prepend(({ nftAddress, currency, amount }) => ({
+  address: nftAddress,
+  abi: nftAbi,
+  functionName: 'mint',
+  args: [amount, STABLECOIN[currency]]
+}));
 
-const mintFx = createEffect(async ({ nftAddress, currency, amount }) => {
-  const { request } = await prepareWriteContract({
-    address: nftAddress,
-    abi: nftAbi,
-    functionName: 'mint',
-    args: [amount, STABLECOIN_ADDRESS[currency]]
-  });
-  const { hash } = await writeContract(request);
-  return waitForTransaction({ hash });
-});
-mintFx.fail.watch(logFxError('mintFx'));
+const mintStatus = createFxStatus('mint');
+
+const approve = writeContractFx.prepend(({ nftAddress, currency, amount }) => ({
+  address: STABLECOIN[currency],
+  abi: erc20Abi,
+  functionName: 'approve',
+  args: [nftAddress, amount || MaxUint256]
+}));
+
+const approveStatus = createFxStatus('approve');
 
 const $approvedKv = createStore({}).on(allowanceFx.done, (state, { params, result }) => {
   return {
     ...state,
     [params.accountAddress]: {
       ...state[params.accountAddress],
-      [STABLECOIN_ADDRESS[params.currency]]: Number(result) > 0
+      [STABLECOIN[params.currency]]: Number(result) > 0
     }
   };
 });
 
 const closeMintErrorToast = createEvent();
 
-const $mintErrorToast = createStore(null)
-  .on(mintFx.fail, (_, { error }) => error?.shortMessage)
+const $mintErrorMessage = createStore(null)
+  .on(mintStatus.fail, (_, { error }) => error?.shortMessage)
   .reset(closeMintErrorToast);
 
 const $approved = combine([BuyNftGate.state, walletModel.$account, $approvedKv], ([state, account, approvedKv]) => {
-  return !!approvedKv?.[account?.address]?.[STABLECOIN_ADDRESS[state?.currency]];
+  return !!approvedKv?.[account?.address]?.[STABLECOIN[state?.currency]];
 });
 
 // call allowance when the page params changed
 sample({
   source: [BuyNftGate.state, walletModel.$account, $approvedKv],
   filter: ([state, account, approvedKv]) =>
-    !!state?.nftAddress &&
-    !!account?.address &&
-    approvedKv?.[account?.address]?.[STABLECOIN_ADDRESS[state?.currency]] == null,
+    !!state?.nftAddress && !!account?.address && approvedKv?.[account?.address]?.[STABLECOIN[state?.currency]] == null,
   fn: ([state, account]) => ({
     nftAddress: state?.nftAddress,
     accountAddress: account?.address,
@@ -80,29 +74,31 @@ sample({
 
 // refetch allowance once approve is done
 sample({
-  clock: approveFx.done,
   source: walletModel.$account,
-  fn: (account, { params }) => ({
+  clock: approveStatus.done,
+  fn: (account, { address, args }) => ({
     accountAddress: account?.address,
-    nftAddress: params?.nftAddress,
-    currency: params?.currency
+    nftAddress: args?.[0],
+    currency: STABLECOIN[address]
   }),
   target: allowanceFx
 });
 
 // refetch tokenId once minted
 sample({
-  source: mintFx.done,
-  fn: ({ params }) => [params.nftAddress],
+  source: mintStatus.done,
+  fn: ({ address }) => [address],
   target: collectionsModel.tokenIdFx
 });
 
 export const buyNftModel = {
   $approved,
   allowanceFx,
-  approveFx,
-  mintFx,
+  approve,
+  approveStatus,
+  mint,
+  mintStatus,
   BuyNftGate,
-  $mintErrorToast,
+  $mintErrorMessage,
   closeMintErrorToast
 };

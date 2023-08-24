@@ -3,6 +3,7 @@ import { connect, disconnect, switchNetwork, watchAccount, watchNetwork } from '
 import { metamaskConnector, walletConnectConnector } from '../../../shared/api/web3';
 import { CHAIN_CONFIG } from '../../../shared/config';
 import { logFxError } from '../../../shared/lib/log-fx-error';
+import { txStatusUpdated, TxStatusEnum } from '../../../shared/lib/wagmi-effector';
 
 const toggleModal = createEvent();
 const accountChanged = createEvent();
@@ -72,6 +73,11 @@ const $isConnecting = createStore({ metamask: false, walletConnect: false })
   .on(connectFx.done, (state, { params }) => ({ ...state, [params]: false }))
   .on(connectFx.fail, (state, { params }) => ({ ...state, [params]: false }));
 
+const $txToasts = createStore([]).on(txStatusUpdated, (state, payload) => {
+  if (payload?.status !== TxStatusEnum.FULFILLED) return state;
+  return [...state, payload];
+});
+
 export const walletModel = {
   $modalOpen,
   $connection,
@@ -84,5 +90,6 @@ export const walletModel = {
   $network,
   $isSupportedNetwork,
   switchNetworkFx,
-  $isConnecting
+  $isConnecting,
+  $txToasts
 };

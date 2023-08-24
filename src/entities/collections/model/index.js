@@ -108,6 +108,7 @@ const collectionsListFx = createEffect(async () => {
   for (let i = 0; i < metadataResults?.length; i++) {
     const { status, value } = metadataResults[i];
     if (status === 'fulfilled' && value?.disabled !== true) {
+      // if (status === 'fulfilled') {
       const { address, result: tokenURI } = metadataUri[i];
       const category = CATEGORY_KEY[value.category];
       if (category) {
