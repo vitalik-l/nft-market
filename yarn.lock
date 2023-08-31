@@ -2926,6 +2926,21 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-primitive" "1.0.3"
 
+"@radix-ui/react-checkbox@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-checkbox/-/react-checkbox-1.0.4.tgz#98f22c38d5010dd6df4c5744cac74087e3275f4b"
+  integrity sha512-CBuGQa52aAYnADZVt/KBQzXrwx6TqnlwtcIPGtVt5JkkzQwMOLJjPukimhfKEr4GQNd43C+djUh5Ikopj8pSLg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "1.0.1"
+    "@radix-ui/react-compose-refs" "1.0.1"
+    "@radix-ui/react-context" "1.0.1"
+    "@radix-ui/react-presence" "1.0.1"
+    "@radix-ui/react-primitive" "1.0.3"
+    "@radix-ui/react-use-controllable-state" "1.0.1"
+    "@radix-ui/react-use-previous" "1.0.1"
+    "@radix-ui/react-use-size" "1.0.1"
+
 "@radix-ui/react-collection@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-collection/-/react-collection-1.0.3.tgz#9595a66e09026187524a36c6e7e9c7d286469159"
@@ -6462,6 +6477,11 @@ effector-react@^22.5.3:
   integrity sha512-JEFh+eERSYTu99h+Zba9g4a7JFHq0AKo4u9+ZvbceFiijSzzQl5ChPuRsI8Y9Ly2uobFANzPRvD+U3UXiDEcrQ==
   dependencies:
     use-sync-external-store "^1.0.0"
+
+effector-storage@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/effector-storage/-/effector-storage-6.1.1.tgz#82448fa33626d62ae550de4577cd0948066fa642"
+  integrity sha512-xSzat/P7v8PTF9NQcoN6fmPD7gTJhPyp5+T1EaDKSfokseq7WG0cv4t05gYNF6RF6hWY2OCEo3gD/V9KlhmyZQ==
 
 effector@^22.8.6:
   version "22.8.6"

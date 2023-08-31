@@ -7,5 +7,6 @@
   },
   "downloadModel": "Download 3-D model",
   "confirmInWallet": "Confirm transaction in the wallet.",
-  "waitingForTransaction": "Waiting for transaction..."
+  "waitingForTransaction": "Waiting for transaction...",
+  "agreementConfirm": "Confirm that you have read and accept the user agreement and confirm that you are not a US tax resident"
 }

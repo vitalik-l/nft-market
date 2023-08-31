@@ -4,7 +4,7 @@ import 'styled-components/macro';
 import { ReactComponent as Spinner } from '../../images/spinner.svg';
 import { forwardRef } from 'react';
 
-export const ButtonBase = styled.button(({ disabled }) => [disabled && tw`pointer-events-none opacity-80`]);
+export const ButtonBase = styled.button(({ disabled }) => [disabled && tw`pointer-events-none opacity-50`]);
 
 export const PrimaryButton = styled(ButtonBase)(({ small }) => [
   small && tw`px-[1rem] py-[0.5rem] text-[13px]`,

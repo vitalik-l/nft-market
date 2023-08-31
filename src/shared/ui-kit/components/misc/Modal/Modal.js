@@ -1,3 +1,5 @@
+import tw from 'twin.macro';
+import 'styled-components/macro';
 import styled, { keyframes } from 'styled-components';
 import { ModalBase, ModalOverlay } from './ModalBase';
 import React from 'react';
@@ -32,14 +34,14 @@ const ButtonClose = styled(ButtonBase)`
 
 export const Modal = styled(({ className, children, title, onClose, ...baseProps }) => {
   return (
-    <ModalBase {...baseProps}>
-      <div className={className}>
+    <ModalBase {...baseProps} className={className} css={tw`flex flex-col`}>
+      <div>
         {!!title && <ModalTitle>{title}</ModalTitle>}
         <ButtonClose onClick={onClose}>
           <CloseIcon />
         </ButtonClose>
-        {children}
       </div>
+      <div css={tw`grow overflow-auto`}>{children}</div>
     </ModalBase>
   );
 })`
@@ -47,7 +49,6 @@ export const Modal = styled(({ className, children, title, onClose, ...baseProps
   border-radius: 1.5rem;
   background: white;
   z-index: 100;
-  max-width: 100%;
   min-width: 320px;
 `;
 

@@ -9,10 +9,9 @@ import { Select } from '../../../shared/ui-kit/components/misc/Select';
 import { Label } from '../../../shared/ui-kit/components/misc/Label';
 import { useMemo } from 'react';
 import { collectionsModel } from '../../../entities/collections';
-import { ErrorToast, Toast } from '../../../shared/ui-kit/components/misc/Toast';
+import { ErrorToast } from '../../../shared/ui-kit/components/misc/Toast';
 import { walletModel } from '../../../entities/wallet/model';
 import { CHAIN_CONFIG } from '../../../shared/config';
-import { CrossCircledIcon } from '@radix-ui/react-icons';
 import { useTranslation } from 'react-i18next';
 
 const defaultValues = {
@@ -33,7 +32,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
   const price = collectionsModel.usePriceDollar(nftAddress);
   const tokenId = collectionsModel.useTokenId(nftAddress);
   const amountLimit = collectionsModel.useAmountLimit(nftAddress);
-  const mintErrorMessage = useUnit(buyNftModel.$mintErrorMessage);
+  const errorMessage = useUnit(buyNftModel.$errorMessage);
   const mintLoading = useUnit(buyNftModel.mintStatus.$loading);
   const approveLoading = useUnit(buyNftModel.approveStatus.$loading);
   const isSupportedNetwork = useUnit(walletModel.$isSupportedNetwork);
@@ -100,11 +99,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
       <Button type="submit" css={tw`mt-3`} loading={loading}>
         {submitLabel}
       </Button>
-      <ErrorToast
-        open={!!mintErrorMessage}
-        onOpenChange={() => buyNftModel.closeMintErrorToast()}
-        message={mintErrorMessage}
-      />
+      <ErrorToast open={!!errorMessage} onOpenChange={() => buyNftModel.closeErrorToast()} message={errorMessage} />
     </form>
   );
 };
