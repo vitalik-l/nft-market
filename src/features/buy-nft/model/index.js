@@ -73,17 +73,18 @@ sample({
 });
 
 const $approvedKv = createStore({}).on(allowanceFx.done, (state, { params, result }) => {
+  const stablecoin = STABLECOIN[params.currency];
   return {
     ...state,
     [params.accountAddress]: {
       ...state[params.accountAddress],
-      [STABLECOIN[params.currency]]: Number(result) > 0
+      [stablecoin]: { ...state?.[params.accountAddress]?.[stablecoin], [params.nftAddress]: Number(result) > 0 }
     }
   };
 });
 
 const $approved = combine([BuyNftGate.state, walletModel.$account, $approvedKv], ([state, account, approvedKv]) => {
-  return !!approvedKv?.[account?.address]?.[STABLECOIN[state?.currency]];
+  return !!approvedKv?.[account?.address]?.[STABLECOIN[state?.currency]]?.[state?.nftAddress];
 });
 
 // call allowance when the page params changed
