@@ -60,8 +60,16 @@ sample({
   clock: approve,
   source: agreementModel.$confirmed,
   filter: (confirmed) => !confirmed,
-  fn: () => true,
+  fn: (_, params) => ({ fn: 'approve', params }),
   target: agreementModel.open
+});
+
+sample({
+  clock: agreementModel.confirm,
+  source: agreementModel.$key,
+  filter: ({ fn }) => fn === 'approve',
+  fn: ({ params }) => params,
+  target: approveFx
 });
 
 const $approvedKv = createStore({}).on(allowanceFx.done, (state, { params, result }) => {

@@ -17,7 +17,7 @@ export const AgreementConfirmModal = () => {
   const [checked, setChecked] = useState(confirmed);
 
   return (
-    <Modal title={t('User agreement')} open={isOpen} onClose={() => agreementModel.open(false)} css={tw`w-[800px]`}>
+    <Modal title={t('User agreement')} open={isOpen} onClose={() => agreementModel.close()} css={tw`w-[800px]`}>
       <div>
         <div css={tw`p-[15px] shadow-[inset_0_-1px_5px_0_#ccc]`}>
           <AgreementText />
@@ -25,7 +25,7 @@ export const AgreementConfirmModal = () => {
         <div css={tw`p-[15px] mt-4 text-center`}>
           <div css={tw`flex items-center`}>
             <Checkbox.Root
-              className="shadow-blackA7 hover:bg-violet3 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] bg-white shadow-[0_1px_4px] outline-none shadow-primary-600 focus:outline-none"
+              className="shadow-blackA7 hover:bg-violet3 flex h-[25px] w-[25px] min-w-[25px] appearance-none items-center justify-center rounded-[4px] bg-white shadow-[0_1px_4px] outline-none shadow-primary-600 focus:outline-none"
               id="c1"
               checked={checked}
               onCheckedChange={setChecked}
