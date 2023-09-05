@@ -53,6 +53,7 @@ sample({
   clock: approve,
   source: agreementModel.$confirmed,
   filter: (confirmed) => !!confirmed,
+  fn: (_, params) => params,
   target: approveFx
 });
 
