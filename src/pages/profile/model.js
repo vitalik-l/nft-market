@@ -39,15 +39,13 @@ const $accountNfts = $accountNftBalances.map((accountNftBalances) => {
 
 // fetch balances when open a profile page
 sample({
-  source: [walletModel.$account, collectionsModel.$collections, ProfileGate.status],
-  filter: ([account, collections, gateStatus]) => gateStatus && !!account?.address && !!collections?.addresses?.length,
-  fn: ([account, collections]) => ({ account: account?.address, addresses: collections?.addresses }),
+  source: [walletModel.$account, collectionsModel.$items, ProfileGate.status],
+  filter: ([account, items, gateStatus]) => gateStatus && !!account?.address && !!Object.keys(items?.byAddress)?.length,
+  fn: ([account, items]) => ({ account: account?.address, addresses: Object.keys(items?.byAddress) }),
   target: nftBalancesFx
 });
 
-const $pending = combine([collectionsModel.collectionsListFx.pending, nftBalancesFx.pending], (states) =>
-  states.some(Boolean)
-);
+const $pending = combine([nftBalancesFx.pending], (states) => states.some(Boolean));
 
 // fetch balances when bought nft
 sample({

@@ -42,7 +42,7 @@ export const SuccessToast = ({ title, ...props }) => {
   );
 };
 
-export const ErrorToast = ({ message, ...props }) => {
+export const ErrorToast = ({ message, title, ...props }) => {
   const { t } = useTranslation();
 
   return (
@@ -50,7 +50,7 @@ export const ErrorToast = ({ message, ...props }) => {
       title={
         <div className="flex gap-1 items-center text-red-700">
           <CrossCircledIcon className="w-[1em] h-[1em]" />
-          <div>{t('Error')}</div>
+          <div>{t(title ?? 'Error')}</div>
         </div>
       }
       {...props}

@@ -1,9 +1,9 @@
-import { createEffect, createEvent, createStore } from 'effector';
-import { connect, disconnect, switchNetwork, watchAccount, watchNetwork } from '@wagmi/core';
-import { metamaskConnector, walletConnectConnector } from '../../../shared/api/web3';
-import { CHAIN_CONFIG } from '../../../shared/config';
+import { createEffect, createEvent, createStore, sample } from 'effector';
+import { connect as wagmiConnect, disconnect, switchNetwork, watchAccount, watchNetwork } from '@wagmi/core';
+import { connectors } from '../../../shared/api/web3';
 import { logFxError } from '../../../shared/lib/log-fx-error';
 import { txStatusUpdated, TxStatusEnum } from '../../../shared/lib/wagmi-effector';
+import { configModel } from '../../../shared/config/model';
 
 const toggleModal = createEvent();
 const accountChanged = createEvent();
@@ -19,24 +19,28 @@ init.watch(() => {
   unwatchNetwork = watchNetwork(networkChanged);
 });
 
-const CONNECTORS = {
-  metamask: metamaskConnector,
-  walletConnect: walletConnectConnector
-};
-
-const connectFx = createEffect(async (connector) => {
-  if (!CONNECTORS[connector]) return;
+const connectFx = createEffect(async ({ connector, chainId }) => {
+  if (!connectors[connector]) return;
   try {
-    return await connect({ chainId: CHAIN_CONFIG.id, connector: CONNECTORS[connector] });
+    return await wagmiConnect({ chainId, connector: connectors[connector] });
   } catch (err) {
     // fallback for mobile version
     if (err?.name === 'ConnectorNotFoundError') {
-      return connect({ chainId: CHAIN_CONFIG.id, connector: CONNECTORS.walletConnect });
+      return wagmiConnect({ chainId, connector: connectors.walletConnect });
     }
     throw err;
   }
 });
 connectFx.fail.watch(logFxError('connectFx'));
+
+const connect = createEvent();
+
+sample({
+  clock: connect,
+  source: configModel.$chain,
+  fn: (chain, connector) => ({ connector, chainId: Number(chain?.attributes?.chainId) }),
+  target: connectFx
+});
 
 const disconnectFx = createEffect(async () => {
   return disconnect();
@@ -67,11 +71,11 @@ const $connected = $account.map((account) => !!account?.address);
 const $isSupportedNetwork = $network.map((network) => !!network?.chain && !network.chain?.unsupported);
 
 const $isConnecting = createStore({ metamask: false, walletConnect: false })
-  .on(connectFx, (state, payload) => {
-    return { ...state, [payload]: true };
+  .on(connectFx, (state, { connector }) => {
+    return { ...state, [connector]: true };
   })
-  .on(connectFx.done, (state, { params }) => ({ ...state, [params]: false }))
-  .on(connectFx.fail, (state, { params }) => ({ ...state, [params]: false }));
+  .on(connectFx.done, (state, { params: { connector } }) => ({ ...state, [connector]: false }))
+  .on(connectFx.fail, (state, { params: { connector } }) => ({ ...state, [connector]: false }));
 
 const $txToasts = createStore([]).on(txStatusUpdated, (state, payload) => {
   if (payload?.status !== TxStatusEnum.FULFILLED) return state;
@@ -81,7 +85,6 @@ const $txToasts = createStore([]).on(txStatusUpdated, (state, payload) => {
 export const walletModel = {
   $modalOpen,
   $connection,
-  connectFx,
   toggleModal,
   $account,
   disconnectFx,
@@ -91,5 +94,8 @@ export const walletModel = {
   $isSupportedNetwork,
   switchNetworkFx,
   $isConnecting,
-  $txToasts
+  $txToasts,
+  accountChanged,
+  networkChanged,
+  connect
 };

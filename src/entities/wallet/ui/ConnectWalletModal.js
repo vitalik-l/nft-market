@@ -14,7 +14,7 @@ export const ConnectWalletModal = () => {
     <Modal open={modalOpen} onClose={() => walletModel.toggleModal(false)} title="Connect a Wallet">
       <div tw="grid p-3 gap-2">
         <Button
-          onClick={() => walletModel.connectFx('metamask')}
+          onClick={() => walletModel.connect('metamask')}
           icon={<img src="/images/metamask.svg" tw="w-[1.5em] h-[1.5em]" />}
           loading={isConnecting?.metamask}
           tw="justify-between"
@@ -23,7 +23,7 @@ export const ConnectWalletModal = () => {
         </Button>
         <Button
           onClick={() => {
-            walletModel.connectFx('walletConnect');
+            walletModel.connect('walletConnect');
           }}
           icon={<img src="/images/walletconnect.svg" tw="w-[1.5em] h-[1.5em]" />}
           loading={isConnecting?.walletConnect}

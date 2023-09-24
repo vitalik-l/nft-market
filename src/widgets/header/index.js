@@ -118,7 +118,7 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
 
   const defaultLogoLink = (
     <LogoLink to="/">
-      <img src="/images/logo.jpg" alt="logo" />
+      <img src="/images/logo.png" alt="logo" />
       Agedor
     </LogoLink>
   );

@@ -3,23 +3,24 @@ import 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { Header } from '../../widgets/header';
 import AnimationRevealPage from '../../shared/ui-kit/helpers/AnimationRevealPage';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { SectionHeading } from '../../shared/ui-kit/components/misc/Headings';
 import { useParams } from 'react-router-dom';
 import { collectionsModel } from '../../entities/collections';
 import { Spinner } from 'shared/ui-kit';
-import { useUnit } from 'effector-react';
+import { useStoreMap, useUnit } from 'effector-react';
 import { usd } from '../../shared/lib/usd';
 import { BuyNftForm } from '../../features/buy-nft';
 import { walletModel } from '../../entities/wallet/model';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
 import { Footer } from '../../widgets/footer';
-import { CATEGORY_KEY } from '../../shared/config';
 import { useTranslation } from 'react-i18next';
 import { HighlightedText } from '../../shared/ui-kit/components/misc/HighlightedText';
 import { PrimaryLink } from '../../shared/ui-kit/components/misc/Links';
+import { getContent } from '../../shared/api/backend';
+import { STRAPI_URL } from '../../shared/config';
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
@@ -52,11 +53,16 @@ const SwiperThumbs = styled(Swiper)`
   }
 `;
 
-const Video = ({ src }) => {
-  return (
-    <video src={src} tw="m-auto">
+const Media = ({ url, className, mime }) => {
+  const src = `${STRAPI_URL}${url}`;
+  const isVideo = useMemo(() => mime.indexOf('video') !== -1, [mime]);
+
+  return isVideo ? (
+    <video src={src} className={className} controls>
       video
     </video>
+  ) : (
+    <img alt="" src={src} className={className} />
   );
 };
 
@@ -67,8 +73,7 @@ export const NftPage = () => {
   } = useTranslation();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const { address } = useParams();
-  const metadata = collectionsModel.useMetadata(address);
-  const isMetadataLoading = useUnit(collectionsModel.collectionsListFx.pending);
+  const data = useStoreMap(collectionsModel.$items, (items) => items.byAddress[address?.toLowerCase()]);
   const priceDollar = collectionsModel.usePriceDollar(address);
   const amountLimit = collectionsModel.useAmountLimit(address);
   const tokenId = collectionsModel.useTokenId(address);
@@ -87,79 +92,71 @@ export const NftPage = () => {
       value: isAvailableLoading ? <Spinner /> : `${available}/${amountLimit.value}`
     }
   ];
-  const trans = (obj) => obj?.[language];
+  const { name = '', description = '' } = getContent(data) ?? {};
 
   return (
     <AnimationRevealPage>
       <Header />
       <Container slideClassName="flex-1">
-        {isMetadataLoading ? (
-          <div css={tw`flex justify-center items-center mt-[80px]`}>
-            <Spinner css={tw`text-[60px]`} />
-          </div>
-        ) : (
-          <TwoColumn>
-            <ImageColumn css={tw`md:w-1/2 h-auto w-full`}>
-              <div tw="w-full">
-                <Swiper modules={[Thumbs, FreeMode]} thumbs={{ swiper: thumbsSwiper }}>
-                  {metadata.media?.map((item) => (
-                    <SwiperSlide key={item?.url}>
-                      {item?.type === 'video' ? (
-                        <Video src={item?.url} />
-                      ) : (
-                        <img src={item?.url} css={tw`rounded-4xl bg-cover m-auto`} alt="" />
-                      )}
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-                <SwiperThumbs
-                  onSwiper={setThumbsSwiper}
-                  spaceBetween={10}
-                  slidesPerView={4}
-                  freeMode={true}
-                  watchSlidesProgress={true}
-                  modules={[FreeMode, Navigation, Thumbs]}
-                  tw="mt-6 px-[24px]"
-                  navigation
-                >
-                  {metadata.media?.map((item) => (
-                    <SwiperSlide key={item?.url} css={tw`cursor-pointer`}>
-                      <img src={item?.url} css={tw`rounded-4xl bg-cover m-auto`} alt="" />
-                    </SwiperSlide>
-                  ))}
-                </SwiperThumbs>
-              </div>
-            </ImageColumn>
-            <TextColumn>
-              <TextContent>
-                <PrimaryLink as={Link} to={`/collections/${CATEGORY_KEY[metadata.category]}`} tw="capitalize">
-                  {metadata.category}
-                </PrimaryLink>
-                <Heading>
-                  {trans(metadata.name)}{' '}
-                  <HighlightedText>{isFullPriceLoading ? <Spinner /> : usd(fullPrice)}</HighlightedText>
-                </Heading>
-                <Description>{trans(metadata.description)}</Description>
-                {metadata.model && (
-                  <div tw="mt-4">
-                    <PrimaryLink href={metadata.model} target="_blank">
-                      {t('downloadModel')}
-                    </PrimaryLink>
-                  </div>
-                )}
-                <Statistics>
-                  {statistics.map((statistic, index) => (
-                    <Statistic key={index}>
-                      <Value>{statistic.value}</Value>
-                      <Key>{statistic.key}</Key>
-                    </Statistic>
-                  ))}
-                </Statistics>
-                {walletConnected && available > 0 && <BuyNftForm nftAddress={address} css={tw`mt-[40px]`} />}
-              </TextContent>
-            </TextColumn>
-          </TwoColumn>
-        )}
+        <TwoColumn>
+          <ImageColumn css={tw`md:w-1/2 h-auto w-full`}>
+            <div tw="w-full">
+              <Swiper modules={[Thumbs, FreeMode]} thumbs={{ swiper: thumbsSwiper }}>
+                {data?.attributes?.media?.data?.map((item) => (
+                  <SwiperSlide key={item?.attributes?.url} tw="relative pt-[100%]">
+                    <Media
+                      css={tw`absolute top-[0] left-[0] w-[100%] h-[100%] rounded-4xl bg-cover m-auto`}
+                      {...item?.attributes}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <SwiperThumbs
+                onSwiper={setThumbsSwiper}
+                spaceBetween={10}
+                slidesPerView={4}
+                freeMode={true}
+                watchSlidesProgress={true}
+                modules={[FreeMode, Navigation, Thumbs]}
+                tw="mt-6 px-[24px]"
+                navigation
+              >
+                {data?.attributes?.media?.data?.map((item) => (
+                  <SwiperSlide key={item?.attributes?.url} css={tw`cursor-pointer`}>
+                    <img src={`${STRAPI_URL}${item?.attributes?.url}`} css={tw`rounded-4xl bg-cover m-auto`} alt="" />
+                  </SwiperSlide>
+                ))}
+              </SwiperThumbs>
+            </div>
+          </ImageColumn>
+          <TextColumn>
+            <TextContent>
+              <PrimaryLink as={Link} to={`/category/${data?.category?.attributes?.slug}`} tw="capitalize">
+                {getContent(data?.category)?.name}
+              </PrimaryLink>
+              <Heading>
+                {name} <HighlightedText>{isFullPriceLoading ? <Spinner /> : usd(fullPrice)}</HighlightedText>
+              </Heading>
+              <Description>{description}</Description>
+              {data?.attributes?.modelFile && (
+                <div tw="mt-4">
+                  <PrimaryLink href={''} target="_blank">
+                    {t('downloadModel')}
+                  </PrimaryLink>
+                </div>
+              )}
+              <Statistics>
+                {statistics.map((statistic, index) => (
+                  <Statistic key={index}>
+                    <Value>{statistic.value}</Value>
+                    <Key>{statistic.key}</Key>
+                  </Statistic>
+                ))}
+              </Statistics>
+              {walletConnected && available > 0 && <BuyNftForm nftAddress={address} css={tw`mt-[40px]`} />}
+            </TextContent>
+          </TextColumn>
+        </TwoColumn>
       </Container>
       <Footer />
     </AnimationRevealPage>

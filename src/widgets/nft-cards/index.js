@@ -9,7 +9,6 @@ import { ReactComponent as SvgDecoratorBlob1 } from 'shared/ui-kit/images/svg-de
 import { ReactComponent as SvgDecoratorBlob2 } from 'shared/ui-kit/images/svg-decorator-blob-7.svg';
 import { NftCard } from 'entities/collections/ui';
 import { Spinner } from '../../shared/ui-kit';
-import { CATEGORIES, CATEGORIES_KEYS } from '../../shared/config';
 import { Link } from 'react-router-dom';
 import { useGate, useUnit } from 'effector-react';
 import { collectionsModel } from '../../entities/collections';
@@ -17,6 +16,7 @@ import { SortingSelect } from './SortingSelect';
 import { useTranslation } from 'react-i18next';
 import { PrimaryButton } from '../../shared/ui-kit/components/misc/Buttons';
 import { nftCardsModel } from './model';
+import { getContent } from '../../shared/api/backend';
 
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
 const Header = tw(SectionHeading)``;
@@ -28,7 +28,7 @@ const TabControl = styled.div`
     ${tw`bg-gray-300 text-gray-700`}
   }
 
-  ${(props) => props.active && tw`bg-primary-500! text-gray-100!`}
+  ${(props) => props.$active && tw`bg-primary-500! text-gray-100!`}
 }
 `;
 
@@ -45,24 +45,25 @@ export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onCh
   const { t } = useTranslation();
   useGate(nftCardsModel.NftCardsGate, { activeTab });
   const items = useUnit(nftCardsModel.$sortedItems);
-  const pending = useUnit(collectionsModel.collectionsListFx.pending);
+  const pending = false;
+  const categories = useUnit(collectionsModel.$categories);
 
   return (
     <Container>
       <ContentWithPaddingXl>
         <HeaderRow>
           <Header>{heading}</Header>
-          {!!CATEGORIES_KEYS?.length && (
+          {!!categories?.length && (
             <TabsControl>
-              {CATEGORIES_KEYS.map((category, index) => (
+              {categories.map((category) => (
                 <TabControl
-                  key={category}
-                  active={activeTab === category}
-                  onClick={asLink ? undefined : () => onChange?.(category)}
+                  key={category.id}
+                  $active={activeTab === category.attributes.slug}
+                  onClick={asLink ? undefined : () => onChange?.(category.attributes.slug)}
                   as={asLink ? Link : undefined}
-                  to={asLink ? `/collections/${category}` : undefined}
+                  to={asLink ? `/category/${category.attributes.slug}` : undefined}
                 >
-                  {CATEGORIES[category]}
+                  {getContent(category)?.name}
                 </TabControl>
               ))}
             </TabsControl>
@@ -72,9 +73,9 @@ export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onCh
           <SortingSelect />
         </div>
         {!pending &&
-          CATEGORIES_KEYS.map((category, index) => (
+          categories.map((category) => (
             <TabContent
-              key={category}
+              key={category.id}
               variants={{
                 current: {
                   opacity: 1,
@@ -88,11 +89,11 @@ export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onCh
                 }
               }}
               transition={{ duration: 0.4 }}
-              initial={activeTab === category ? 'current' : 'hidden'}
-              animate={activeTab === category ? 'current' : 'hidden'}
+              initial={activeTab === category.attributes?.slug ? 'current' : 'hidden'}
+              animate={activeTab === category.attributes?.slug ? 'current' : 'hidden'}
             >
-              {items[category]?.length ? (
-                items[category]?.map((address, index) => <NftCard key={address} address={address} />)
+              {items?.length ? (
+                items?.map((address) => <NftCard key={address} address={address} />)
               ) : (
                 <div tw="m-auto">{t('There are no items yet')}</div>
               )}

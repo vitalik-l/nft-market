@@ -4,11 +4,13 @@ import TabCardGrid from 'widgets/nft-cards';
 import React from 'react';
 import { Footer } from '../../widgets/footer';
 import { useParams } from 'react-router-dom';
-import { CATEGORIES_KEYS } from '../../shared/config';
 import { HighlightedText } from '../../shared/ui-kit/components/misc/HighlightedText';
+import { useUnit } from 'effector-react';
+import { collectionsModel } from '../../entities/collections';
 
-export const CollectionsPage = () => {
-  const { collection } = useParams();
+export const CategoryPage = () => {
+  const { slug } = useParams();
+  const categories = useUnit(collectionsModel.$categories);
 
   return (
     <AnimationRevealPage>
@@ -19,7 +21,7 @@ export const CollectionsPage = () => {
             Checkout our <HighlightedText>gallery.</HighlightedText>
           </>
         }
-        activeTab={collection ?? CATEGORIES_KEYS[0]}
+        activeTab={slug ?? categories?.[0]?.attributes?.slug}
         asLink
       />
       <Footer />

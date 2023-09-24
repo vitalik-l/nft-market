@@ -1,7 +1,7 @@
 import { combine, createEffect, createEvent, createStore, sample, split } from 'effector';
 import { readContract } from '@wagmi/core';
 import { erc20Abi, nftAbi } from '../../../shared/abi';
-import { MaxUint256, STABLECOIN } from '../../../shared/config';
+import { MaxUint256 } from '../../../shared/config';
 import { logFxError } from '../../../shared/lib/log-fx-error';
 import { walletModel } from '../../../entities/wallet/model';
 import { createGate } from 'effector-react';
@@ -9,13 +9,14 @@ import { collectionsModel } from '../../../entities/collections';
 import { writeContractFx } from '../../../shared/lib/wagmi-effector';
 import { createFxStatus } from './create-fx-status';
 import { agreementModel } from '../../../entities/agreement';
+import { configModel } from '../../../shared/config/model';
 
 const BuyNftGate = createGate();
 
 const allowanceFx = createEffect(async ({ currency = 'USDT', accountAddress, nftAddress }) => {
   return readContract({
     abi: erc20Abi,
-    address: STABLECOIN[currency],
+    address: configModel.stablecoin?.[currency],
     args: [accountAddress, nftAddress],
     functionName: 'allowance'
   });
@@ -26,7 +27,7 @@ const mint = writeContractFx.prepend(({ nftAddress, currency, amount }) => ({
   address: nftAddress,
   abi: nftAbi,
   functionName: 'mint',
-  args: [amount, STABLECOIN[currency]]
+  args: [amount, configModel.stablecoin?.[currency]]
 }));
 
 const mintStatus = createFxStatus('mint');
@@ -34,7 +35,7 @@ const mintStatus = createFxStatus('mint');
 const approve = createEvent();
 
 const approveFx = writeContractFx.prepend(({ nftAddress, currency, amount }) => ({
-  address: STABLECOIN[currency],
+  address: configModel.stablecoin?.[currency],
   abi: erc20Abi,
   functionName: 'approve',
   args: [nftAddress, amount || MaxUint256]
@@ -74,7 +75,7 @@ sample({
 });
 
 const $approvedKv = createStore({}).on(allowanceFx.done, (state, { params, result }) => {
-  const stablecoin = STABLECOIN[params.currency];
+  const stablecoin = configModel.stablecoin?.[params.currency];
   return {
     ...state,
     [params.accountAddress]: {
@@ -85,14 +86,16 @@ const $approvedKv = createStore({}).on(allowanceFx.done, (state, { params, resul
 });
 
 const $approved = combine([BuyNftGate.state, walletModel.$account, $approvedKv], ([state, account, approvedKv]) => {
-  return !!approvedKv?.[account?.address]?.[STABLECOIN[state?.currency]]?.[state?.nftAddress];
+  return !!approvedKv?.[account?.address]?.[configModel.stablecoin?.[state?.currency]]?.[state?.nftAddress];
 });
 
 // call allowance when the page params changed
 sample({
   source: [BuyNftGate.state, walletModel.$account, $approvedKv],
   filter: ([state, account, approvedKv]) =>
-    !!state?.nftAddress && !!account?.address && approvedKv?.[account?.address]?.[STABLECOIN[state?.currency]] == null,
+    !!state?.nftAddress &&
+    !!account?.address &&
+    approvedKv?.[account?.address]?.[configModel.stablecoin?.[state?.currency]] == null,
   fn: ([state, account]) => ({
     nftAddress: state?.nftAddress,
     accountAddress: account?.address,
@@ -108,7 +111,7 @@ sample({
   fn: (account, { address, args }) => ({
     accountAddress: account?.address,
     nftAddress: args?.[0],
-    currency: STABLECOIN[address]
+    currency: configModel.stablecoin?.[address]
   }),
   target: allowanceFx
 });

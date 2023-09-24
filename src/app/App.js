@@ -111,11 +111,16 @@ import { ConnectedGuard, ConnectWalletModal } from '../entities/wallet';
 import { NftPage } from '../pages/nft';
 import { ProfilePage } from '../pages/profile';
 import * as Toast from '@radix-ui/react-toast';
-import { CollectionsPage } from '../pages/collections';
+import { CategoryPage } from '../pages/category';
 import { UserAgreementPage } from '../pages/user-agreement';
 import { WalletLoader } from '../entities/wallet/ui/WalletLoader';
 import { TxStatusToast } from '../entities/wallet/ui/TxStatusToast';
 import { AgreementConfirmModal } from '../entities/agreement';
+import { useUnit } from 'effector-react';
+import { configModel } from '../shared/config/model';
+import { AppLoading } from './AppLoading';
+import { Toasts } from '../shared/ui-kit/toast';
+import { collectionsModel } from '../entities/collections';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -128,33 +133,41 @@ const ScrollToTop = () => {
 export default function App() {
   // If you want to disable the animation just use the disabled `prop` like below on your page's component
   // return <AnimationRevealPage disabled>xxxxxxxxxx</AnimationRevealPage>;
+  const chain = useUnit(configModel.$chain);
+  const categoriesPending = useUnit(collectionsModel.categoriesFx.pending);
+  const isAppLoading = !chain || categoriesPending;
 
   return (
     <Toast.Provider swipeDirection="right">
       <GlobalStyles />
-      <Router>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/template" element={<Navigate to="/components/landingPages/RestaurantLandingPage" />} />
-          <Route path="/components/:type/:subtype/:name" element={<ComponentRenderer />} />
-          <Route path="/components/:type/:name" element={<ComponentRenderer />} />
-          <Route path="/thank-you" element={<ThankYouPage />} />
-          <Route path="/ui-kit" element={<MainLandingPage />} />
+      {isAppLoading ? (
+        <AppLoading />
+      ) : (
+        <Router>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/template" element={<Navigate to="/components/landingPages/RestaurantLandingPage" />} />
+            <Route path="/components/:type/:subtype/:name" element={<ComponentRenderer />} />
+            <Route path="/components/:type/:name" element={<ComponentRenderer />} />
+            <Route path="/thank-you" element={<ThankYouPage />} />
+            <Route path="/ui-kit" element={<MainLandingPage />} />
 
-          <Route path="/" element={<HomePage />} />
-          <Route path="/nft/:address" element={<NftPage />} />
-          <Route
-            path="/account/:address"
-            element={
-              <ConnectedGuard fallback={<Navigate to="/" />}>
-                <ProfilePage />
-              </ConnectedGuard>
-            }
-          />
-          <Route path="/collections/:collection?" element={<CollectionsPage />} />
-          <Route path="/user-agreement" element={<UserAgreementPage />} />
-        </Routes>
-      </Router>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/nft/:address" element={<NftPage />} />
+            <Route
+              path="/account/:address"
+              element={
+                <ConnectedGuard>
+                  <ProfilePage />
+                </ConnectedGuard>
+              }
+            />
+            <Route path="/category/:slug?" element={<CategoryPage />} />
+            <Route path="/user-agreement" element={<UserAgreementPage />} />
+          </Routes>
+        </Router>
+      )}
+      <Toasts />
       <ConnectWalletModal />
       <AgreementConfirmModal />
       <WalletLoader />

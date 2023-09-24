@@ -9,6 +9,8 @@ import { collectionsModel } from '../model';
 import { Link } from 'react-router-dom';
 import { usd } from '../../../shared/lib/usd';
 import { useTranslation } from 'react-i18next';
+import { getContent, getMediaUrl } from '../../../shared/api/backend';
+import { STRAPI_URL } from '../../../shared/config';
 
 const CardContainer = tw.div`mt-10 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 sm:pr-10 md:pr-6 lg:pr-12`;
 const Card = tw(
@@ -42,18 +44,15 @@ const CardContent = tw.p`mt-1 text-sm font-medium text-gray-600`;
 const CardPrice = tw.p`mt-4 text-xl font-bold`;
 
 export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) => {
-  const {
-    i18n: { language }
-  } = useTranslation();
-  const data = useStoreMap(collectionsModel.$collections, (collections) => collections.metadata[address]);
+  const { i18n } = useTranslation();
+  const data = useStoreMap(collectionsModel.$items, (items) => items.byAddress?.[address?.toLowerCase()]);
   const price = collectionsModel.usePriceDollar(address);
   const amountLimit = collectionsModel.useAmountLimit(address);
   const fullPrice = price?.value * amountLimit?.value;
-  const imageSrc = data?.media?.[0]?.url;
+  const imageSrc = `${STRAPI_URL}${data?.attributes?.image?.data?.attributes?.url}`;
   const rating = 5;
   const reviews = 0;
-  const title = data?.name?.[language];
-  const content = data?.descriptionShort?.[language];
+  const { name: title, descriptionShort: content } = getContent(data) ?? {};
 
   return (
     <CardContainer>

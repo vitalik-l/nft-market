@@ -5,14 +5,15 @@ import { Spinner } from '../../../shared/ui-kit';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../shared/ui-kit/components/misc/Buttons';
 import { PrimaryLink } from '../../../shared/ui-kit/components/misc/Links';
-import { SCANNER_URL } from '../../../shared/config';
 import { formatAddress } from '../../../shared/lib/format-address';
+import { configModel } from '../../../shared/config/model';
 
 const close = () => walletLoader.close();
 
 export const WalletLoader = () => {
   const { t } = useTranslation();
   const { key, hash } = useUnit(walletLoader.$data);
+  const chain = useUnit(configModel.$chain);
   const open = !!key;
 
   return (
@@ -21,7 +22,7 @@ export const WalletLoader = () => {
         {hash ? (
           <div>
             <div className="text-[18px]">{t('waitingForTransaction')}</div>
-            <PrimaryLink href={`${SCANNER_URL}/tx/${hash}`} target="_blank">
+            <PrimaryLink href={`${chain?.attributes?.scannerUrl}/tx/${hash}`} target="_blank">
               {formatAddress(hash)}
             </PrimaryLink>
           </div>

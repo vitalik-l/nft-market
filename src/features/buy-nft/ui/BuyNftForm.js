@@ -13,6 +13,7 @@ import { ErrorToast } from '../../../shared/ui-kit/components/misc/Toast';
 import { walletModel } from '../../../entities/wallet/model';
 import { CHAIN_CONFIG } from '../../../shared/config';
 import { useTranslation } from 'react-i18next';
+import { configModel } from '../../../shared/config/model';
 
 const defaultValues = {
   currency: 'USDT',
@@ -36,6 +37,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
   const mintLoading = useUnit(buyNftModel.mintStatus.$loading);
   const approveLoading = useUnit(buyNftModel.approveStatus.$loading);
   const isSupportedNetwork = useUnit(walletModel.$isSupportedNetwork);
+  const chain = useUnit(configModel.$chain);
   const available = (amountLimit.value ?? 0) - (tokenId.value ?? 0);
   const currency = watch('currency');
   const amount = watch('amount');
@@ -51,7 +53,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
 
   const onSubmit = ({ currency, amount }) => {
     if (!isSupportedNetwork) {
-      return walletModel.switchNetworkFx({ chainId: CHAIN_CONFIG.id });
+      return walletModel.switchNetworkFx({ chainId: chain?.attributes?.chainId });
     }
     if (!approved) {
       return buyNftModel.approve({ nftAddress, currency });
