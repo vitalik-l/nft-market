@@ -53,14 +53,12 @@ const SwiperThumbs = styled(Swiper)`
   }
 `;
 
-const Media = ({ url, className, mime }) => {
+const Media = ({ url, className, mime, asThumb }) => {
   const src = `${STRAPI_URL}${url}`;
   const isVideo = useMemo(() => mime.indexOf('video') !== -1, [mime]);
 
   return isVideo ? (
-    <video src={src} className={className} controls>
-      video
-    </video>
+    <video src={src} className={className} controls={!asThumb} />
   ) : (
     <img alt="" src={src} className={className} />
   );
@@ -123,7 +121,13 @@ export const NftPage = () => {
               >
                 {data?.attributes?.media?.data?.map((item) => (
                   <SwiperSlide key={item?.attributes?.url} css={tw`cursor-pointer`}>
-                    <img src={`${STRAPI_URL}${item?.attributes?.url}`} css={tw`rounded-4xl bg-cover m-auto`} alt="" />
+                    <div className="relative pt-[100%]">
+                      <Media
+                        asThumb
+                        css={tw`rounded-4xl absolute top-[0] left-[0] w-[100%] h-[100%] rounded-4xl object-cover m-auto`}
+                        {...item?.attributes}
+                      />
+                    </div>
                   </SwiperSlide>
                 ))}
               </SwiperThumbs>
