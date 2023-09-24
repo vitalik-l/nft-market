@@ -1,5 +1,4 @@
 import { createEvent, sample } from 'effector';
-import { collectionsModel } from '../entities/collections';
 import { walletModel } from '../entities/wallet/model';
 import { configModel } from '../shared/config/model';
 import { initWeb3Api } from '../shared/api/web3';
@@ -10,11 +9,6 @@ export const appReady = createEvent();
 sample({
   source: appReady,
   target: [configModel.init]
-});
-
-sample({
-  clock: configModel.chainFx.done,
-  target: collectionsModel.init
 });
 
 configModel.$chain.watch((chain) => {

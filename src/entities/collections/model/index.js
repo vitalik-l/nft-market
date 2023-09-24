@@ -5,8 +5,7 @@ import { contractsReadFn } from '../../../shared/lib/contracts-read-fn';
 import { backendApi } from '../../../shared/api/backend';
 import { $locale } from '../../../shared/i18n';
 import { toast } from '../../../shared/ui-kit/toast';
-
-const init = createEvent();
+import { configModel } from '../../../shared/config/model';
 
 const categoriesFx = createEffect(backendApi.getCategories);
 sample({
@@ -113,14 +112,13 @@ const useTokenId = (address) => {
 };
 
 sample({
-  clock: init,
-  source: $locale,
-  fn: (locale) => ({ locale }),
+  source: [$locale, configModel.$chain],
+  filter: ([locale, chain]) => !!locale && !!chain,
+  fn: ([locale, chain]) => ({ locale, chainEntityId: chain.id }),
   target: categoriesFx
 });
 
 export const collectionsModel = {
-  init,
   priceDollarFx,
   amountLimitFx,
   $priceDollar,

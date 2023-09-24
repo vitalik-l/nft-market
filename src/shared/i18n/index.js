@@ -8,7 +8,7 @@ import { createEvent, createStore } from 'effector';
 const fallbackLng = 'en';
 const lng = localStorage.getItem('lang') || fallbackLng;
 
-const localeChanged = createEvent();
+export const localeChanged = createEvent();
 export const $locale = createStore(lng).on(localeChanged, (_, v) => v);
 
 export const i18NextInit = () => {
