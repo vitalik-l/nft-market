@@ -5,7 +5,13 @@ const strapi = new Strapi({ url: STRAPI_URL });
 
 export const getContent = (obj) => obj?.attributes?.contents?.data?.[0]?.attributes;
 
-export const getMediaUrl = (obj, index = 0) => `${STRAPI_URL}${obj?.attributes?.media?.data?.[index]?.attributes?.url}`;
+export const getMediaUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http')) {
+    return url;
+  }
+  return `${STRAPI_URL}${url}`;
+};
 
 const getChain = async () => {
   const resp = await strapi.find('chains', {

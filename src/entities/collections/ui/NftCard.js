@@ -49,7 +49,7 @@ export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) 
   const price = collectionsModel.usePriceDollar(address);
   const amountLimit = collectionsModel.useAmountLimit(address);
   const fullPrice = price?.value * amountLimit?.value;
-  const imageSrc = `${STRAPI_URL}${data?.attributes?.image?.data?.attributes?.url}`;
+  const imageSrc = getMediaUrl(data?.attributes?.image?.data?.attributes?.url);
   const rating = 5;
   const reviews = 0;
   const { name: title, descriptionShort: content } = getContent(data) ?? {};

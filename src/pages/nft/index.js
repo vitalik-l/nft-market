@@ -19,8 +19,7 @@ import { Footer } from '../../widgets/footer';
 import { useTranslation } from 'react-i18next';
 import { HighlightedText } from '../../shared/ui-kit/components/misc/HighlightedText';
 import { PrimaryLink } from '../../shared/ui-kit/components/misc/Links';
-import { getContent } from '../../shared/api/backend';
-import { STRAPI_URL } from '../../shared/config';
+import { getMediaUrl, getContent } from '../../shared/api/backend';
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
@@ -54,7 +53,7 @@ const SwiperThumbs = styled(Swiper)`
 `;
 
 const Media = ({ url, className, mime, asThumb }) => {
-  const src = `${STRAPI_URL}${url}`;
+  const src = getMediaUrl(url);
   const isVideo = useMemo(() => mime.indexOf('video') !== -1, [mime]);
 
   return isVideo ? (
@@ -103,7 +102,7 @@ export const NftPage = () => {
                 {data?.attributes?.media?.data?.map((item) => (
                   <SwiperSlide key={item?.attributes?.url} tw="relative pt-[100%]">
                     <Media
-                      css={tw`absolute top-[0] left-[0] w-[100%] h-[100%] rounded-4xl bg-cover m-auto`}
+                      css={tw`absolute top-[0] left-[0] w-[100%] h-[100%] rounded-4xl object-contain m-auto`}
                       {...item?.attributes}
                     />
                   </SwiperSlide>
