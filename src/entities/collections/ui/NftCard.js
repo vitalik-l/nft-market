@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 import { usd } from '../../../shared/lib/usd';
 import { useTranslation } from 'react-i18next';
 import { getContent, getMediaUrl } from '../../../shared/api/backend';
-import { STRAPI_URL } from '../../../shared/config';
 
 const CardContainer = tw.div`mt-10 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 sm:pr-10 md:pr-6 lg:pr-12`;
 const Card = tw(

@@ -121,6 +121,7 @@ import { configModel } from '../shared/config/model';
 import { AppLoading } from './AppLoading';
 import { Toasts } from '../shared/ui-kit/toast';
 import { collectionsModel } from '../entities/collections';
+import { PageNotFound } from '../pages/404';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -164,6 +165,7 @@ export default function App() {
             />
             <Route path="/category/:slug?" element={<CategoryPage />} />
             <Route path="/user-agreement" element={<UserAgreementPage />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>
       )}
