@@ -44,6 +44,7 @@ const getCategories = async ({ locale, chainEntityId }) => {
         populate: {
           image: '*',
           media: '*',
+          modelFile: '*',
           contents: {
             filters: {
               locale: { $eq: locale }

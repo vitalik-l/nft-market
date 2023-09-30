@@ -143,7 +143,7 @@ export const NftPage = () => {
               <Description>{description}</Description>
               {data?.attributes?.modelFile && (
                 <div tw="mt-4">
-                  <PrimaryLink href={''} target="_blank">
+                  <PrimaryLink href={data?.attributes?.modelFile?.data?.attributes?.url}>
                     {t('downloadModel')}
                   </PrimaryLink>
                 </div>
