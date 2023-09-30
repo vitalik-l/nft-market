@@ -37,6 +37,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
   const mintLoading = useUnit(buyNftModel.mintStatus.$loading);
   const approveLoading = useUnit(buyNftModel.approveStatus.$loading);
   const isSupportedNetwork = useUnit(walletModel.$isSupportedNetwork);
+  const isSwitchNetworkLoading = useUnit(walletModel.switchNetworkFx.pending);
   const chain = useUnit(configModel.$chain);
   const available = (amountLimit.value ?? 0) - (tokenId.value ?? 0);
   const currency = watch('currency');
@@ -49,7 +50,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
     : approved
     ? `Buy for ${fullPrice} ${currency}`
     : `Approve ${currency}`;
-  const loading = allowancePending || isSubmitting || mintLoading || approveLoading;
+  const loading = allowancePending || mintLoading || approveLoading || isSwitchNetworkLoading;
 
   const onSubmit = ({ currency, amount }) => {
     if (!isSupportedNetwork) {

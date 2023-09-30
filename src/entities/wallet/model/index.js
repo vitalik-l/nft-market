@@ -4,6 +4,7 @@ import { connectors } from '../../../shared/api/web3';
 import { logFxError } from '../../../shared/lib/log-fx-error';
 import { txStatusUpdated, TxStatusEnum } from '../../../shared/lib/wagmi-effector';
 import { configModel } from '../../../shared/config/model';
+import { toast } from '../../../shared/ui-kit/toast';
 
 const toggleModal = createEvent();
 const accountChanged = createEvent();
@@ -47,9 +48,18 @@ const disconnectFx = createEffect(async () => {
 });
 
 const switchNetworkFx = createEffect(async ({ chainId }) => {
-  return switchNetwork({ chainId });
+  return switchNetwork({ chainId: Number(chainId) });
 });
 switchNetworkFx.fail.watch(logFxError('switchNetworkFx'));
+const SWITCH_NETWORK_ERROR_CODE = {
+  USER_REJECTED_REQUEST: 4001
+};
+sample({
+  source: switchNetworkFx.failData,
+  filter: (error) => error?.code !== SWITCH_NETWORK_ERROR_CODE.USER_REJECTED_REQUEST,
+  fn: (error) => ({ type: 'error', title: 'Switch network failed', content: error?.details }),
+  target: toast
+});
 
 const $connection = createStore({})
   .on(connectFx.doneData, (_, data) => data)
