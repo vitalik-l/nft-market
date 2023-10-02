@@ -90,6 +90,7 @@ export const NftPage = () => {
     }
   ];
   const { name = '', description = '' } = getContent(data) ?? {};
+  const modelFileUrl = data?.attributes?.modelFile?.data?.attributes?.url;
 
   return (
     <AnimationRevealPage>
@@ -141,11 +142,9 @@ export const NftPage = () => {
                 {name} <HighlightedText>{isFullPriceLoading ? <Spinner /> : usd(fullPrice)}</HighlightedText>
               </Heading>
               <Description>{description}</Description>
-              {data?.attributes?.modelFile && (
+              {modelFileUrl && (
                 <div tw="mt-4">
-                  <PrimaryLink href={data?.attributes?.modelFile?.data?.attributes?.url}>
-                    {t('downloadModel')}
-                  </PrimaryLink>
+                  <PrimaryLink href={modelFileUrl}>{t('downloadModel')}</PrimaryLink>
                 </div>
               )}
               <Statistics>
