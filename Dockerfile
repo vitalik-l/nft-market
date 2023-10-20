@@ -7,7 +7,9 @@ RUN yarn
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 RUN yarn build
 
-FROM nginx:latest
+FROM nginx
+RUN apk update && apk add --no-cache vi > /dev/null 2>&1
+COPY ./nginx /etc/nginx
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 # Copy static assets from builder stage
