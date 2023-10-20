@@ -8,3 +8,5 @@ services:
         REACT_APP_STRAPI_URL: ${REACT_APP_STRAPI_URL}
     image: frontend:latest
     env_file: .env
+    ports:
+      - "80:80"
