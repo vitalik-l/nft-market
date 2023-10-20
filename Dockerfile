@@ -8,7 +8,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 RUN yarn build
 
 FROM nginx
-RUN apk update && apk add --no-cache vi > /dev/null 2>&1
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 COPY ./nginx /etc/nginx
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
