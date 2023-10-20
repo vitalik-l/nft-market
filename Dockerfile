@@ -1,6 +1,6 @@
 FROM node:18-alpine as build
 WORKDIR /app
-ENV REACT_APP_STRAPI_URL=${REACT_APP_STRAPI_URL}
+ARG REACT_APP_STRAPI_URL
 COPY . .
 RUN yarn
 # add `/usr/src/app/node_modules/.bin` to $PATH
