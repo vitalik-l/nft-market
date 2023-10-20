@@ -8,5 +8,19 @@ services:
         REACT_APP_STRAPI_URL: ${REACT_APP_STRAPI_URL}
     image: frontend:latest
     env_file: .env
+    restart: unless-stopped
     ports:
       - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/nginx/ssl
+      -
+  # to create a cert: docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -d example.org
+  # to renew a cert: docker compose run --rm certbot renew
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt

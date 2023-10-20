@@ -1,4 +1,4 @@
-FROM node:18-alpine as build
+FROM node:18 as build
 WORKDIR /app
 ARG REACT_APP_STRAPI_URL
 COPY . .
@@ -7,8 +7,7 @@ RUN yarn
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 RUN yarn build
 
-FROM nginx
-COPY ./nginx /etc/nginx
+FROM nginx:1.25.2-alpine
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 # Copy static assets from builder stage
