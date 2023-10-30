@@ -8,6 +8,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
+console.log('version', process.env.REACT_APP_BUILD_VERSION);
+
 i18NextInit();
 appReady();
 
