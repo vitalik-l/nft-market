@@ -20,6 +20,7 @@ services:
         source: ./nginx/nginx.conf
         target: /etc/nginx/nginx.conf
 
+  # see: https://mindsers.blog/en/post/https-using-nginx-certbot-docker/
   # to create a cert: docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -d example.org
   # to renew a cert: docker compose run --rm certbot renew
   certbot:
