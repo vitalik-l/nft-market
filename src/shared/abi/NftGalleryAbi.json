@@ -287,6 +287,11 @@
         "internalType": "uint256",
         "name": "_mintAmount",
         "type": "uint256"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "_stablecoin",
+        "type": "address"
       }
     ],
     "name": "getPriceForMintAmount",
