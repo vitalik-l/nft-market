@@ -26,7 +26,7 @@ Gallery services: verification of authenticity certificates, digitization of the
 "TCS": refers to these Terms and Conditions;
 "Personal Data": A user who buys the required number of parts of the NFT (60% of 100% of the parts of the NFT, or 100% of the total number but not less than 60% of the maximum possible number of NFT) has the right to receive a real object (Item) in his own possession. This will require the user's personal data to deliver the item and sign an agreement on proper storage. Otherwise, the gallery can transfer the item for storage in any of the museums preferred by the buyer;
 "Wallet": refers to an electronic wallet, which allows you to purchase, store, and engage in transactions using virtual currency;
-"Website": refers to the website accessible at the URL www.agedor.gallery
+"Website": refers to the website accessible at the URL www.agedor.art
 2. Subject
 2.1 The purpose of these TCS is to define the terms and conditions of use and/or sale of the Website, and notably to define under which conditions a User may acquire and sell Artworks and their underlying NFT.
 2.2 These TCS apply, without restriction or reservation, to any use of the Services, and are enforceable as soon as they are agreed by a User. Such consent shall be given prior to buying and/or selling an Item on the gallery.
@@ -73,8 +73,8 @@ Traditional currency: CB, Visa and Mastercard, Trust Wallet, 1inch Wallet, Metam
 
 Agedor provides User with a secure online payment service, in order to guarantee the security of payments made on the Website and to fight against fraud. This secure online payment service enables User to pay for her/his order on the secure website of a bank. The Customer is directly redirected to the bank's website at the time of payment of the Order and is then directly redirected to the Website once payment has been made;
 Cryptocurrency: stablecoins. The payments are made her/his Wallet.
-If the User has acquired an item sold by Agedor gallery, she/he may request an invoice by sending an email to the following address: docs@agedor.gallery 
-4.2.6 The following procedure, which respects the Positive Double Click requirement and implies the acceptance of these TCS, has to be followed to place an order on the gallery: collab@agedor.gallery
+If the User has acquired an item sold by Agedor gallery, she/he may request an invoice by sending an email to the following address: docs@agedor.art
+4.2.6 The following procedure, which respects the Positive Double Click requirement and implies the acceptance of these TCS, has to be followed to place an order on the gallery: collab@agedor.art
 If the Artwork is on sale for a fixed price:
 selection of an Artwork on the Website;
 clicking on "Buy" to validate the selected Artwork;
@@ -83,7 +83,7 @@ Confirmation of the acceptance of the order;
 payment of the order by the means provided for in Article 4.2.5.
 4.3 Confirmation of the sale / purchase of an item
 After purchasing NFT, you will receive to your wallet, as well as an address link to a virtual copy of the object, which will be available to you for download if you are among the winners of the monthly drawing of 3D models of real objects
-For all other questions, please contact: pr@agedor.gallery . Agedor gallery shall not be held liable in the event of a typing error that prevents the confirmation email from being delivered.
+For all other questions, please contact: pr@agedor.art. Agedor gallery shall not be held liable in the event of a typing error that prevents the confirmation email from being delivered.
 5. Personal Data
 Agedor gallery stores only the data of the owners of the real object
 
@@ -123,8 +123,8 @@ falsify, misrepresent, or conceal the authorship of the Artwork.
 Given the digital nature of the Artwork and NFT’s technical functioning, the withdrawal period provided for in article L.221-18 of the French Consumer Code will not apply in case of purchase of an Artwork from Agedor Gallery, in accordance with the provisions of article L.221-28 of the French Consumer Code.
 BY PURCHASING AN ARTWORK ON THE WEBSITE, THE USER EXPRESSLY WAIVES HER/HIS RIGHT OF WITHDRAWAL.
 11. Dispute and mediation
-11.1 In the event of a dispute arising between Agedor Gallery and a User, the latter undertakes to send an email to Agedor Gallery, explaining the purpose of her/his request, and providing any information relating to the subject and scope of her/his request, with the aim of finding an amicable solution: docs@agedor.gallery
-11.2 In the event of a dispute between Agedor Gallery and a Consumer established and/or located in France, the Consumer may have recourse free of charge to an independent Ombudsman in order to find amicable resolution. If the Consumer wishes to participate to a mediation, the Consumer shall send a message to Agedor Gallery, requesting mediation: docs@agedor.gallery . Agedor Gallery undertakes to provide all information necessary to organize this mediation.
+11.1 In the event of a dispute arising between Agedor Gallery and a User, the latter undertakes to send an email to Agedor Gallery, explaining the purpose of her/his request, and providing any information relating to the subject and scope of her/his request, with the aim of finding an amicable solution: docs@agedor.art
+11.2 In the event of a dispute between Agedor Gallery and a Consumer established and/or located in France, the Consumer may have recourse free of charge to an independent Ombudsman in order to find amicable resolution. If the Consumer wishes to participate to a mediation, the Consumer shall send a message to Agedor Gallery, requesting mediation: docs@agedor.art . Agedor Gallery undertakes to provide all information necessary to organize this mediation.
 The Consumer is informed that before referring any dispute to this independent Ombudsman, she/he must first attempt to resolve the dispute directly with Agedor Gallery in accordance with the provisions of article 11.1.
 12. General Stipulations
 12.1. Good Faith
