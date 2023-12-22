@@ -6,11 +6,14 @@ const stablecoin = {};
 
 const init = createEvent();
 const chainFx = createEffect(backendApi.getChain);
+const $chain = createStore(null).on(chainFx.doneData, (_, response) => response);
+
 sample({
   source: chainFx.fail,
   fn: () => ({ type: 'error', content: 'Failed to get chain', title: 'Server Error' }),
   target: toast
 });
+
 chainFx.doneData.watch((chain) => {
   const { usdtAddress, usdcAddress } = chain?.attributes?.config?.data?.attributes ?? {};
   stablecoin.USDT = usdtAddress;
@@ -19,7 +22,12 @@ chainFx.doneData.watch((chain) => {
   stablecoin[usdcAddress] = 'USDC';
 });
 
-const $chain = createStore(null).on(chainFx.doneData, (_, response) => response);
+sample({
+  source: chainFx.doneData,
+  filter: (result) => !result,
+  fn: () => ({ type: 'error', content: `Chain not found`, title: 'Not Found' }),
+  target: toast
+});
 
 sample({
   clock: init,

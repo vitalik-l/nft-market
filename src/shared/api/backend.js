@@ -14,15 +14,17 @@ export const getMediaUrl = (url) => {
 };
 
 const getChain = async () => {
+  const chainId = new URLSearchParams(window.location.search)?.get('chainId') ?? '137';
   const resp = await strapi.find('chains', {
     populate: 'config',
     filters: {
       enabled: {
         $eq: true
-      }
+      },
+      ...(chainId ? { chainId: { $eq: chainId } } : {})
     }
   });
-  return resp?.data?.[0];
+  return resp?.data?.[0] ?? null;
 };
 
 const getCategories = async ({ locale, chainEntityId }) => {

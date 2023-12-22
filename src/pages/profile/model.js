@@ -39,8 +39,8 @@ const $accountNfts = $accountNftBalances.map((accountNftBalances) => {
 
 // fetch balances when open a profile page
 sample({
-  source: [walletModel.$account, collectionsModel.$items, ProfileGate.status],
-  filter: ([account, items, gateStatus]) => gateStatus && !!account?.address && !!Object.keys(items?.byAddress)?.length,
+  source: [walletModel.$account, collectionsModel.$items],
+  filter: ([account, items]) => !!account?.address && !!Object.keys(items?.byAddress)?.length,
   fn: ([account, items]) => ({ account: account?.address, addresses: Object.keys(items?.byAddress) }),
   target: nftBalancesFx
 });
