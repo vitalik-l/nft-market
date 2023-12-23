@@ -11,9 +11,9 @@ import { useMemo } from 'react';
 import { collectionsModel } from '../../../entities/collections';
 import { ErrorToast } from '../../../shared/ui-kit/components/misc/Toast';
 import { walletModel } from '../../../entities/wallet/model';
-import { CHAIN_CONFIG } from '../../../shared/config';
 import { useTranslation } from 'react-i18next';
 import { configModel } from '../../../shared/config/model';
+import { parseEther } from 'viem';
 
 const defaultValues = {
   currency: 'USDT',
@@ -57,7 +57,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
       return walletModel.switchNetworkFx({ chainId: chain?.attributes?.chainId });
     }
     if (!approved) {
-      return buyNftModel.approve({ nftAddress, currency });
+      return buyNftModel.approve({ nftAddress, currency, amount: parseEther((price?.value * amount).toString()) });
     }
     buyNftModel.mint({ nftAddress, currency, amount });
   };
@@ -99,7 +99,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
           </Select.Option>
         </Select>
       </div>
-      <Button type="submit" css={tw`mt-3`} loading={loading}>
+      <Button type="submit" css={tw`mt-3`} loading={loading} disabled={amount < 1 || amount > available}>
         {submitLabel}
       </Button>
       <ErrorToast open={!!errorMessage} onOpenChange={() => buyNftModel.closeErrorToast()} message={errorMessage} />

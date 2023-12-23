@@ -10,7 +10,11 @@ export const getMediaUrl = (url) => {
   if (url.startsWith('http')) {
     return url;
   }
-  return `${STRAPI_URL}${url}`;
+  let baseUrl = STRAPI_URL
+  if (baseUrl?.endsWith('/')) {
+    baseUrl = baseUrl?.slice(0, -1);
+  }
+  return `${baseUrl}${url}`;
 };
 
 const getChain = async () => {
@@ -18,10 +22,7 @@ const getChain = async () => {
   const resp = await strapi.find('chains', {
     populate: 'config',
     filters: {
-      enabled: {
-        $eq: true
-      },
-      ...(chainId ? { chainId: { $eq: chainId } } : {})
+      chainId: { $eq: chainId }
     }
   });
   return resp?.data?.[0] ?? null;

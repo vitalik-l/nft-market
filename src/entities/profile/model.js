@@ -1,12 +1,12 @@
 import { createGate } from 'effector-react';
 import { combine, createEffect, createStore, sample } from 'effector';
 import { contractsReadFn } from '../../shared/lib/contracts-read-fn';
-import { walletModel } from '../../entities/wallet/model';
-import { collectionsModel } from '../../entities/collections';
+import { walletModel } from '../wallet/model';
+import { collectionsModel } from '../collections';
 import { logFxError } from '../../shared/lib/log-fx-error';
 import { buyNftModel } from '../../features/buy-nft';
 
-const ProfileGate = createGate();
+export const ProfileGate = createGate();
 
 const nftBalancesFx = createEffect(({ account, addresses }) => {
   return contractsReadFn({ functionName: 'balanceOf', args: [account] })(addresses);
@@ -39,8 +39,8 @@ const $accountNfts = $accountNftBalances.map((accountNftBalances) => {
 
 // fetch balances when open a profile page
 sample({
-  source: [walletModel.$account, collectionsModel.$items],
-  filter: ([account, items]) => !!account?.address && !!Object.keys(items?.byAddress)?.length,
+  source: [walletModel.$account, collectionsModel.$items, ProfileGate.status],
+  filter: ([account, items, gateOpen]) => gateOpen && !!account?.address && !!Object.keys(items?.byAddress)?.length,
   fn: ([account, items]) => ({ account: account?.address, addresses: Object.keys(items?.byAddress) }),
   target: nftBalancesFx
 });
@@ -57,7 +57,6 @@ sample({
 
 export const profileModel = {
   $accountNftBalances,
-  ProfileGate,
   $accountNfts,
   nftBalancesFx,
   $pending

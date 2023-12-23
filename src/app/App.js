@@ -122,6 +122,7 @@ import { AppLoading } from './AppLoading';
 import { Toasts } from '../shared/ui-kit/toast';
 import { collectionsModel } from '../entities/collections';
 import { PageNotFound } from '../pages/404';
+import { ProfileGate } from '../entities/profile/model';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -145,6 +146,7 @@ export default function App() {
         <AppLoading />
       ) : (
         <Router>
+          <ProfileGate />
           <ScrollToTop />
           <Routes>
             <Route path="/template" element={<Navigate to="/components/landingPages/RestaurantLandingPage" />} />

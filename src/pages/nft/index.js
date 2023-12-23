@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import { HighlightedText } from '../../shared/ui-kit/components/misc/HighlightedText';
 import { PrimaryLink } from '../../shared/ui-kit/components/misc/Links';
 import { getMediaUrl, getContent } from '../../shared/api/backend';
+import { profileModel } from '../../entities/profile/model';
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
@@ -79,6 +80,8 @@ export const NftPage = () => {
   const isFullPriceLoading = priceDollar.isLoading || amountLimit.isLoading;
   const available = (amountLimit.value ?? 0) - (tokenId.value ?? 0);
   const isAvailableLoading = amountLimit.isLoading || tokenId.isLoading;
+  const accountBalance = useUnit(profileModel.$accountNftBalances)?.[address?.toLowerCase()]?.result;
+  const hasBalance = accountBalance > 0;
   const statistics = [
     {
       key: 'Price for one NFT',
@@ -142,7 +145,7 @@ export const NftPage = () => {
                 {name} <HighlightedText>{isFullPriceLoading ? <Spinner /> : usd(fullPrice)}</HighlightedText>
               </Heading>
               <Description>{description}</Description>
-              {modelFileUrl && (
+              {modelFileUrl && hasBalance && (
                 <div tw="mt-4">
                   <PrimaryLink href={modelFileUrl}>{t('downloadModel')}</PrimaryLink>
                 </div>

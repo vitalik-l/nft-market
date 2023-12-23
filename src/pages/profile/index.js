@@ -4,10 +4,10 @@ import { Header } from '../../widgets/header';
 import React from 'react';
 import AnimationRevealPage from '../../shared/ui-kit/helpers/AnimationRevealPage';
 import { walletModel } from '../../entities/wallet/model';
-import { useGate, useUnit } from 'effector-react';
+import { useUnit } from 'effector-react';
 import { Button } from '../../shared/ui-kit/components/misc/Buttons';
 import { Container, ContentWithPaddingXl } from '../../shared/ui-kit/components/misc/Layouts';
-import { profileModel } from './model';
+import { profileModel } from '../../entities/profile/model';
 import { Spinner } from '../../shared/ui-kit';
 import { Link } from 'react-router-dom';
 import { NftCard } from '../../entities/collections';
@@ -39,7 +39,6 @@ const NftList = ({ addresses = [] }) => {
 
 export const ProfilePage = () => {
   const account = useUnit(walletModel.$account);
-  useGate(profileModel.ProfileGate);
   const accountNfts = useUnit(profileModel.$accountNfts);
   const pending = useUnit(profileModel.$pending);
 
