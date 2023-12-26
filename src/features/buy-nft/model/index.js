@@ -10,6 +10,7 @@ import { writeContractFx } from '../../../shared/lib/wagmi-effector';
 import { createFxStatus } from './create-fx-status';
 import { agreementModel } from '../../../entities/agreement';
 import { configModel } from '../../../shared/config/model';
+import { formatEther, parseEther } from 'viem';
 
 const BuyNftGate = createGate();
 
@@ -74,24 +75,24 @@ sample({
   target: approveFx
 });
 
-const $approvedKv = createStore({}).on(allowanceFx.done, (state, { params, result }) => {
+const $allowanceKv = createStore({}).on(allowanceFx.done, (state, { params, result }) => {
   const stablecoin = configModel.stablecoin?.[params.currency];
   return {
     ...state,
     [params.accountAddress]: {
       ...state[params.accountAddress],
-      [stablecoin]: { ...state?.[params.accountAddress]?.[stablecoin], [params.nftAddress]: Number(result) > 0 }
+      [stablecoin]: { ...state?.[params.accountAddress]?.[stablecoin], [params.nftAddress]: formatEther(result) }
     }
   };
 });
 
-const $approved = combine([BuyNftGate.state, walletModel.$account, $approvedKv], ([state, account, approvedKv]) => {
-  return !!approvedKv?.[account?.address]?.[configModel.stablecoin?.[state?.currency]]?.[state?.nftAddress];
+const $allowance = combine([BuyNftGate.state, walletModel.$account, $allowanceKv], ([state, account, approvedKv]) => {
+  return approvedKv?.[account?.address]?.[configModel.stablecoin?.[state?.currency]]?.[state?.nftAddress];
 });
 
 // call allowance when the page params changed
 sample({
-  source: [BuyNftGate.state, walletModel.$account, $approvedKv],
+  source: [BuyNftGate.state, walletModel.$account, $allowanceKv],
   filter: ([state, account, approvedKv]) =>
     !!state?.nftAddress &&
     !!account?.address &&
@@ -124,7 +125,7 @@ sample({
 });
 
 export const buyNftModel = {
-  $approved,
+  $allowance,
   allowanceFx,
   approve,
   approveStatus,

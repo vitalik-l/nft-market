@@ -28,7 +28,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
     watch,
     formState: { isSubmitting }
   } = useForm({ defaultValues });
-  const approved = useUnit(buyNftModel.$approved);
+  const allowance = useUnit(buyNftModel.$allowance);
   const allowancePending = useUnit(buyNftModel.allowanceFx.pending);
   const price = collectionsModel.usePriceDollar(nftAddress);
   const tokenId = collectionsModel.useTokenId(nftAddress);
@@ -45,19 +45,21 @@ export const BuyNftForm = ({ nftAddress, className }) => {
   const gateState = useMemo(() => ({ nftAddress, currency }), [nftAddress, currency]);
   useGate(buyNftModel.BuyNftGate, gateState);
   const fullPrice = Math.min(amount, available) * price?.value;
+  const loading = allowancePending || mintLoading || approveLoading || isSwitchNetworkLoading;
+  const amountUSDT = useMemo(() => parseEther((price?.value * amount).toString(), [price?.value, amount]));
+  const approved = allowance >= amountUSDT;
   const submitLabel = !isSupportedNetwork
     ? 'Switch network'
     : approved
-    ? `Buy for ${fullPrice} ${currency}`
-    : `Approve ${currency}`;
-  const loading = allowancePending || mintLoading || approveLoading || isSwitchNetworkLoading;
+      ? `Buy for ${fullPrice} ${currency}`
+      : `Approve ${fullPrice} ${currency}`;
 
   const onSubmit = ({ currency, amount }) => {
     if (!isSupportedNetwork) {
       return walletModel.switchNetworkFx({ chainId: chain?.attributes?.chainId });
     }
     if (!approved) {
-      return buyNftModel.approve({ nftAddress, currency, amount: parseEther((price?.value * amount).toString()) });
+      return buyNftModel.approve({ nftAddress, currency, amount: parseEther(fullPrice.toString()) });
     }
     buyNftModel.mint({ nftAddress, currency, amount });
   };

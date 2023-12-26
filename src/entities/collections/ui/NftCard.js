@@ -56,6 +56,7 @@ export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) 
   const rating = 5;
   const reviews = 0;
   const { name: title, descriptionShort: content } = getContent(data) ?? {};
+  const isProfile = balance != null;
 
   return (
     <CardContainer>
@@ -87,18 +88,22 @@ export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) 
         <CardText>
           <CardTitle>{title}</CardTitle>
           <CardContent>{content}</CardContent>
-          <div className="text-primary-500 font-semibold text-xs mt-4 text-right">{t('Available NFTs')}</div>
+          {!isProfile && (
+            <div className="text-primary-500 font-semibold text-xs mt-4 text-right">{t('Available NFTs')}</div>
+          )}
           <div className="flex justify-between items-center">
-            <CardPrice>{balance != null ? `Your balance: ${balance}` : usd(fullPrice)}</CardPrice>
-            <div className="text-right">
-              {isAvailableLoading ? (
-                <Spinner />
-              ) : (
-                <CardPrice>
-                  {available}/{amountLimit.value}
-                </CardPrice>
-              )}
-            </div>
+            <CardPrice>{isProfile ? `Your balance: ${balance}` : usd(fullPrice)}</CardPrice>
+            {!isProfile && (
+              <div className="text-right">
+                {isAvailableLoading ? (
+                  <Spinner />
+                ) : (
+                  <CardPrice>
+                    {available}/{amountLimit.value}
+                  </CardPrice>
+                )}
+              </div>
+            )}
           </div>
         </CardText>
       </Card>

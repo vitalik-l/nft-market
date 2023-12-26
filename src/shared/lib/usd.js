@@ -4,7 +4,7 @@ const localizeNumber = (value, options) =>
     ...options
   });
 
-export const usd = (value, digits = 2) =>
+export const usd = (value, digits = 0) =>
   localizeNumber(value, {
     style: 'currency',
     currency: 'USD',
