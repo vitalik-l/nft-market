@@ -9,6 +9,7 @@ import { buyNftModel } from '../../features/buy-nft';
 export const ProfileGate = createGate();
 
 const nftBalancesFx = createEffect(({ account, addresses }) => {
+  console.log(account, addresses)
   return contractsReadFn({ functionName: 'balanceOf', args: [account] })(addresses);
 });
 nftBalancesFx.fail.watch(logFxError('nftBalancesFx'));
@@ -46,14 +47,6 @@ sample({
 });
 
 const $pending = combine([nftBalancesFx.pending], (states) => states.some(Boolean));
-
-// fetch balances when bought nft
-sample({
-  source: walletModel.$account,
-  clock: buyNftModel.mintStatus.done,
-  fn: (account, { params }) => ({ account: account?.address, addresses: [params?.nftAddress] }),
-  target: nftBalancesFx
-});
 
 export const profileModel = {
   $accountNftBalances,

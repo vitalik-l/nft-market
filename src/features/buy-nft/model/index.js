@@ -11,6 +11,7 @@ import { createFxStatus } from './create-fx-status';
 import { agreementModel } from '../../../entities/agreement';
 import { configModel } from '../../../shared/config/model';
 import { formatEther, parseEther } from 'viem';
+import { profileModel } from '../../../entities/profile/model';
 
 const BuyNftGate = createGate();
 
@@ -122,6 +123,14 @@ sample({
   source: mintStatus.done,
   fn: ({ address }) => [address],
   target: collectionsModel.tokenIdFx
+});
+
+// fetch balances when bought nft
+sample({
+  source: walletModel.$account,
+  clock: mintStatus.done,
+  fn: (account, { address }) => ({ account: account?.address, addresses: [address] }),
+  target: profileModel.nftBalancesFx
 });
 
 export const buyNftModel = {

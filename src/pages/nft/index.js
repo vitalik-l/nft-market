@@ -90,8 +90,14 @@ export const NftPage = () => {
     {
       key: 'Available',
       value: isAvailableLoading ? <Spinner /> : `${available}/${amountLimit.value}`
-    }
+    },
   ];
+  if (hasBalance) {
+    statistics.push({
+      key: 'Your balance',
+      value: `${accountBalance}`
+    });
+  }
   const { name = '', description = '' } = getContent(data) ?? {};
   const modelFileUrl = data?.attributes?.modelFile?.data?.attributes?.url;
 
@@ -106,7 +112,7 @@ export const NftPage = () => {
                 {data?.attributes?.media?.data?.map((item) => (
                   <SwiperSlide key={item?.attributes?.url} tw="relative pt-[100%]">
                     <Media
-                      css={tw`absolute top-[0] left-[0] w-[100%] h-[100%] rounded-4xl object-contain m-auto`}
+                      className="absolute top-[0] left-[0] w-[100%] h-[100%] rounded-4xl object-contain m-auto"
                       {...item?.attributes}
                     />
                   </SwiperSlide>
@@ -123,7 +129,7 @@ export const NftPage = () => {
                 navigation
               >
                 {data?.attributes?.media?.data?.map((item) => (
-                  <SwiperSlide key={item?.attributes?.url} css={tw`cursor-pointer`}>
+                  <SwiperSlide key={item?.attributes?.url} className="cursor-pointer">
                     <div className="relative pt-[100%]">
                       <Media
                         asThumb
