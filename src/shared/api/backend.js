@@ -10,7 +10,7 @@ export const getMediaUrl = (url) => {
   if (url.startsWith('http')) {
     return url;
   }
-  let baseUrl = STRAPI_URL
+  let baseUrl = STRAPI_URL;
   if (baseUrl?.endsWith('/')) {
     baseUrl = baseUrl?.slice(0, -1);
   }
@@ -59,7 +59,14 @@ const getCategories = async ({ locale, chainEntityId }) => {
   });
 };
 
+const getFaq = ({ locale }) => {
+  return strapi.find('faq', {
+    locale
+  });
+};
+
 export const backendApi = {
   getChain,
-  getCategories
+  getCategories,
+  getFaq
 };

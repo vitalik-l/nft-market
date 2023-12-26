@@ -123,6 +123,7 @@ import { Toasts } from '../shared/ui-kit/toast';
 import { collectionsModel } from '../entities/collections';
 import { PageNotFound } from '../pages/404';
 import { ProfileGate } from '../entities/profile/model';
+import { FAQPage } from '../pages/faq';
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -167,6 +168,7 @@ export default function App() {
             />
             <Route path="/category/:slug?" element={<CategoryPage />} />
             <Route path="/user-agreement" element={<UserAgreementPage />} />
+            <Route path="/faq" element={<FAQPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>

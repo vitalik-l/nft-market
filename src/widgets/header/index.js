@@ -6,7 +6,6 @@ import { css } from 'styled-components/macro'; //eslint-disable-line
 
 import useAnimatedNavToggler from 'shared/ui-kit/helpers/useAnimatedNavToggler.js';
 
-import logo from 'shared/ui-kit/images/logo.svg';
 import { ReactComponent as MenuIcon } from 'feather-icons/dist/icons/menu.svg';
 import { ReactComponent as CloseIcon } from 'feather-icons/dist/icons/x.svg';
 import { ConnectWalletButton } from '../../entities/wallet';
@@ -25,9 +24,9 @@ export const NavLinks = tw.div`inline-flex items-center gap-[2rem]`;
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
  */
 export const NavLink = tw(Link)`
-  text-lg my-2 lg:text-sm lg:mx-6 lg:my-0
-  font-semibold tracking-wide transition duration-300
-  pb-1 border-b-2 border-transparent hover:border-primary-500 hocus:text-primary-500
+  text-lg my-2 lg:mx-6 lg:my-0
+  font-black tracking-wide transition duration-300
+  pb-1 border-b-2 border-transparent hocus:text-primary-500
 `;
 
 export const PrimaryLink = tw(NavLink)`
@@ -77,7 +76,7 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
    */
   const defaultLinks = [
     <NavLinks key={1}>
-      {/*<NavLink href="/#">About</NavLink>*/}
+      <NavLink to="/faq">FAQ</NavLink>
       {/*<NavLink href="/#">Blog</NavLink>*/}
       {/*<NavLink href="/#">Pricing</NavLink>*/}
       {/*<NavLink href="/#">Contact Us</NavLink>*/}
