@@ -17,23 +17,23 @@ const Card = tw(
   motion(Link)
 )`border border-primary-500 rounded-2xl block max-w-xs mx-auto sm:max-w-none sm:mx-0 overflow-hidden`;
 const CardImageContainer = styled.div`
-    ${(props) =>
-            css`
-                background-image: url('${props.imageSrc}');
-            `}
-    ${tw`h-64 bg-cover relative rounded-t`}
+  ${(props) =>
+    css`
+      background-image: url('${props.imageSrc}');
+    `}
+  ${tw`h-64 bg-cover relative rounded-t`}
 `;
 const CardRatingContainer = tw.div`leading-none absolute inline-flex bg-gray-100 bottom-0 left-0 ml-4 mb-4 rounded-full px-5 py-2 items-end`;
 const CardRating = styled.div`
-    ${tw`mr-1 text-sm font-bold flex items-end`}
-    svg {
-        ${tw`w-4 h-4 fill-current text-orange-400 mr-1`}
-    }
+  ${tw`mr-1 text-sm font-bold flex items-end`}
+  svg {
+    ${tw`w-4 h-4 fill-current text-orange-400 mr-1`}
+  }
 `;
 
 const CardHoverOverlay = styled(motion.div)`
-    background-color: rgba(0, 0, 0, 0.7);
-    ${tw`absolute inset-0 flex justify-center items-center`}
+  background-color: rgba(0, 0, 0, 0.7);
+  ${tw`absolute inset-0 flex justify-center items-center`}
 `;
 
 const CardReview = tw.div`font-medium text-xs text-gray-600`;
@@ -44,7 +44,7 @@ const CardContent = tw.p`mt-1 text-sm font-medium text-gray-600`;
 const CardPrice = tw.div`text-xl font-bold`;
 
 export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) => {
-  const { i18n } = useTranslation();
+  const { t } = useTranslation();
   const data = useStoreMap(collectionsModel.$items, (items) => items.byAddress?.[address?.toLowerCase()]);
   const price = collectionsModel.usePriceDollar(address);
   const amountLimit = collectionsModel.useAmountLimit(address);
@@ -87,10 +87,17 @@ export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) 
         <CardText>
           <CardTitle>{title}</CardTitle>
           <CardContent>{content}</CardContent>
-          <div className="flex justify-between items-center mt-4">
+          <div className="text-primary-500 font-semibold text-xs mt-4 text-right">{t('Available NFTs')}</div>
+          <div className="flex justify-between items-center">
             <CardPrice>{balance != null ? `Your balance: ${balance}` : usd(fullPrice)}</CardPrice>
-            <div className="text-sm">
-              {isAvailableLoading ? <Spinner /> : <span>{available}/{amountLimit.value}</span>}
+            <div className="text-right">
+              {isAvailableLoading ? (
+                <Spinner />
+              ) : (
+                <CardPrice>
+                  {available}/{amountLimit.value}
+                </CardPrice>
+              )}
             </div>
           </div>
         </CardText>
