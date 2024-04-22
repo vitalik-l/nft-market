@@ -18,7 +18,7 @@ import { PrimaryButton } from '../../shared/ui-kit/components/misc/Buttons';
 import { nftCardsModel } from './model';
 import { getContent } from '../../shared/api/backend';
 
-const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
+const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row gap-4`;
 const Header = tw(SectionHeading)``;
 const TabsControl = tw.div`grid w-full sm:w-auto sm:flex flex-wrap bg-gray-200 px-2 py-2 rounded-3xl leading-none mt-12 xl:mt-0`;
 
@@ -52,8 +52,8 @@ export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onCh
     <Container>
       <ContentWithPaddingXl>
         <HeaderRow>
-          <Header>{heading}</Header>
-          {!!categories?.length && (
+          {/*<Header>{heading}</Header>*/}
+          {!!categories?.length ? (
             <TabsControl>
               {categories.map((category) => (
                 <TabControl
@@ -67,11 +67,9 @@ export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onCh
                 </TabControl>
               ))}
             </TabsControl>
-          )}
-        </HeaderRow>
-        <div className="mt-4">
+          ) : <div />}
           <SortingSelect />
-        </div>
+        </HeaderRow>
         {!pending &&
           categories.map((category) => (
             <TabContent

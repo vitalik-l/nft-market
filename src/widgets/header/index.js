@@ -118,7 +118,21 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
   const defaultLogoLink = (
     <LogoLink to="/">
       <img src="/images/logo.png" alt="logo" />
-      Agedor
+      <div>
+        <div style={{
+          backgroundClip: 'text',
+          backgroundImage: 'linear-gradient(112deg, rgb(174, 134, 37) 5%, rgb(174, 134, 37) 45%, rgb(210, 172, 71) 85%)',
+          fontFamily: 'Prata',
+          color: 'transparent',
+          fontWeight: 400,
+          textAlign: 'center',
+          lineHeight: 1.3,
+          fontSize: 20,
+          maxWidth: 350
+        }} className="mt-[30px] lg:mt-0">
+          Age d'OR Only successful people are here
+        </div>
+      </div>
     </LogoLink>
   );
 
@@ -169,7 +183,7 @@ const collapseBreakPointCssMap = {
   lg: {
     mobileNavLinks: tw`lg:hidden`,
     desktopNavLinks: tw`lg:flex`,
-    mobileNavLinksContainer: tw`lg:hidden`
+    mobileNavLinksContainer: tw`lg:hidden gap-4 mt-[-30px]`
   },
   xl: {
     mobileNavLinks: tw`lg:hidden`,
