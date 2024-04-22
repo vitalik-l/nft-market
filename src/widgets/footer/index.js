@@ -1,6 +1,7 @@
 import { ReactComponent as TwitterIcon } from '../../shared/ui-kit/images/twitter-icon.svg';
 import { ReactComponent as TelegramIcon } from '../../shared/ui-kit/images/telegram-icon.svg';
 import { ReactComponent as YoutubeIcon } from '../../shared/ui-kit/images/youtube-icon.svg';
+import { ReactComponent as TiktokIcon } from '../../shared/ui-kit/images/tiktok-icon.svg';
 import React from 'react';
 import tw from 'twin.macro';
 import 'styled-components/macro';
@@ -52,8 +53,11 @@ export const Footer = () => {
               <SocialLink href="https://twitter.com/agedorgallery?s=21&t=UfsBXRsqMNbR6y-bWd3p9g" target="_blank">
                 <TwitterIcon />
               </SocialLink>
-              <SocialLink href="https://youtube.com/@AgedorGallery2023" target="_blank">
+              <SocialLink href="https://youtube.com/@Agedorart" target="_blank">
                 <YoutubeIcon />
+              </SocialLink>
+              <SocialLink href="https://vt.tiktok.com/ZSFmBn8QD/" target="_blank">
+                <TiktokIcon />
               </SocialLink>
             </SocialLinksContainer>
           </div>
