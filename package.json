@@ -1,6 +1,6 @@
 {
   "name": "treact",
-  "version": "0.1.0",
+  "version": "1.0.14",
   "private": true,
   "dependencies": {
     "@radix-ui/colors": "^1.0.1",

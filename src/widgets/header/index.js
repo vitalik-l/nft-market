@@ -37,14 +37,14 @@ export const PrimaryLink = tw(NavLink)`
 `;
 
 export const LogoLink = styled(NavLink)`
-  ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
+  ${tw`flex font-black border-b-0 text-2xl! ml-0!`};
 
   img {
-    ${tw`w-10 mr-3`}
+    ${tw`w-10 h-10 mr-3`}
   }
 `;
 
-export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`;
+export const MobileNavLinksContainer = tw.nav`flex flex-1 justify-between`;
 export const NavToggle = tw.button`
   lg:hidden z-20 focus:outline-none hocus:text-primary-500 transition duration-300
 `;
@@ -129,7 +129,7 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
           lineHeight: 1.3,
           fontSize: 20,
           maxWidth: 350
-        }} className="mt-[30px] lg:mt-0">
+        }}>
           Age d'OR Only successful people are here
         </div>
       </div>
@@ -155,9 +155,11 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
         >
           {links}
         </MobileNavLinks>
-        <NavToggle onClick={toggleNavbar} className={showNavLinks ? 'open' : 'closed'}>
-          {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
-        </NavToggle>
+        <div className="mt-4 z-20">
+          <NavToggle onClick={toggleNavbar}>
+            {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
+          </NavToggle>
+        </div>
       </MobileNavLinksContainer>
     </Root>
   );
@@ -183,7 +185,7 @@ const collapseBreakPointCssMap = {
   lg: {
     mobileNavLinks: tw`lg:hidden`,
     desktopNavLinks: tw`lg:flex`,
-    mobileNavLinksContainer: tw`lg:hidden gap-4 mt-[-30px]`
+    mobileNavLinksContainer: tw`lg:hidden gap-4`
   },
   xl: {
     mobileNavLinks: tw`lg:hidden`,
