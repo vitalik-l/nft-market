@@ -40,7 +40,7 @@ const CardReview = tw.div`font-medium text-xs text-gray-600`;
 
 const CardText = tw.div`p-4 text-gray-900`;
 const CardTitle = tw.h5`text-lg font-semibold group-hover:text-primary-500`;
-const CardContent = tw.p`mt-1 text-sm font-medium text-gray-600`;
+const CardContent = tw.p`mt-1 text-base font-medium`;
 const CardPrice = tw.div`text-xl font-bold`;
 
 export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) => {
@@ -92,7 +92,7 @@ export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) 
             <div className="text-primary-500 font-semibold text-xs mt-4 text-right">{t('Available NFTs')}</div>
           )}
           <div className="flex justify-between items-center">
-            <CardPrice>{isProfile ? `Your balance: ${balance}` : usd(fullPrice)}</CardPrice>
+            <CardPrice>{isProfile ? `Your balance: ${balance}` : usd(price?.value)}</CardPrice>
             {!isProfile && (
               <div className="text-right">
                 {isAvailableLoading ? (

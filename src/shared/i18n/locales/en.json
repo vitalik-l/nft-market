@@ -8,5 +8,26 @@
   "downloadModel": "Download 3D model",
   "confirmInWallet": "Confirm transaction in the wallet.",
   "waitingForTransaction": "Waiting for transaction...",
-  "agreementConfirm": "Confirm that you have read and accept the user agreement and confirm that you are not a US tax resident"
+  "agreementConfirm": "Confirm that you have read and accept the user agreement and confirm that you are not a US tax resident",
+  "description": {
+    "web3": "The gallery optimizes the processes of confirming the origin and pricing of collectible items and masterpieces of world art, storing this data on the blockchain, making it easily verifiable and publicly accessible.",
+    "ar": "The gallery team digitizes each object, preserving the authenticity of the physical object to safeguard humanity's cultural heritage and history, reproducing it in the digital world.",
+    "refi": "\"Where there is respect for the culture of other nations and for the individual as a person - there is no place for discrimination\" - The gallery tells the story of each unique creator, of each object exhibited, and shows that the individual is important, their aspirations, and that cultural diversity makes our world more impressive, efficient, and sustainable.",
+    "rwa": "Some owners of certain objects have allowed us to divide the cost into multiple parts, thus giving the opportunity to own a virtual version of the object to a larger circle of enthusiasts and investors. These objects are indicated by a number on available virtual 3D models in the bottom right corner of the object card, and their price remains unchanged at $100. Additionally, each owner of a 3D model has the opportunity to obtain the physical object. This has led to the emergence of new investment and ownership strategies. (More details in our Terms and Conditions)",
+    "defi": "The gallery allows people to purchase lots using cryptocurrency, and it does not collect your personal data (except in the case of sending a physical object to a new owner). The gallery operates 24/7, 366 (365) days a year, so purchasing lots of interest is always available."
+  },
+  "heading": {
+    "web3": "Authenticity Guarantee and Quick Purchase Options:",
+    "ar": "Preserving Cultural Heritage for Future Generations:",
+    "refi": "Fighting against chauvinism, racism, and other forms of discrimination:",
+    "rwa": "The gallery provides access to the most lucrative and prestigious investment objects in the world:",
+    "defi": "Ensuring privacy, personal data protection, and avoiding bank fees:"
+  },
+  "gold": {
+    "web3": "WEB3.",
+    "ar": "AR/VR.",
+    "refi": "ReFi.",
+    "rwa": "RWA.",
+    "defi": "DeFi."
+  }
 }

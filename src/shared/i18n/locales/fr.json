@@ -1,3 +1,17 @@
 {
-  "available NFTs": "NFTs disponible"
+  "available NFTs": "NFTs disponible",
+  "description": {
+    "web3": "La galerie optimise les processus de confirmation de l'origine et de fixation des prix des objets de collection et des chefs-d'œuvre de l'art mondial, stockant ces données sur la blockchain, les rendant facilement vérifiables et accessibles au public.",
+    "ar": "L'équipe de la galerie numérise chaque objet, préservant l'authenticité de l'objet physique pour protéger le patrimoine culturel et l'histoire de l'humanité, le reproduisant dans le monde numérique.",
+    "refi": "\"Là où il y a du respect pour la culture d'autres nations et pour l'individu en tant que personne - il n'y a pas de place pour la discrimination\" - La galerie raconte l'histoire de chaque créateur unique, de chaque objet exposé, et montre que l'individu est important, ses aspirations, et que la diversité culturelle rend notre monde plus impressionnant, efficace et durable.",
+    "rwa": "Certains propriétaires de certains objets nous ont permis de diviser le coût en plusieurs parties, offrant ainsi la possibilité de posséder une version virtuelle de l'objet à un plus grand cercle d'enthousiastes et d'investisseurs. Ces objets sont indiqués par un numéro sur les modèles 3D virtuels disponibles dans le coin inférieur droit de la carte de l'objet, et leur prix reste inchangé à 100 $. De plus, chaque propriétaire d'un modèle 3D a la possibilité d'obtenir l'objet physique. Cela a conduit à l'émergence de nouvelles stratégies d'investissement et de possession. (Plus de détails dans notre Accord Utilisateur)",
+    "defi": "La galerie permet aux gens d'acheter des lots en utilisant des cryptomonnaies, et elle ne collecte pas vos données personnelles (sauf dans le cas de l'envoi d'un objet physique à un nouveau propriétaire). La galerie fonctionne 24h/24, 366 (365) jours par an, donc l'achat de lots d'intérêt est toujours disponible."
+  },
+  "heading": {
+    "web3": "Garantie d'authenticité et options d'achat rapide:",
+    "ar": "Préservation du patrimoine culturel pour les générations futures:",
+    "refi": "Lutte contre le chauvinisme, le racisme et autres formes de discrimination:",
+    "rwa": "La galerie offre accès aux objets d'investissement les plus lucratifs et prestigieux du monde:",
+    "defi": "Garantir la confidentialité, la protection des données personnelles et éviter les frais bancaires:"
+  }
 }

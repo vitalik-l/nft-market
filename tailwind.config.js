@@ -283,8 +283,9 @@ module.exports = {
       DEFAULT: '1'
     },
     fontFamily: {
-      display: ['Inter', 'system-ui'],
+      display: ['Calisto MT', 'Inter', 'system-ui'],
       sans: [
+        'Calisto MT',
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',

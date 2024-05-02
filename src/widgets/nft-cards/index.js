@@ -23,12 +23,12 @@ const Header = tw(SectionHeading)``;
 const TabsControl = tw.div`grid w-full sm:w-auto sm:flex flex-wrap px-2 py-2 rounded-3xl leading-none xl:mt-0`;
 
 const TabControl = styled.div`
-  ${tw`rounded-3xl capitalize cursor-pointer px-6 py-3 mt-2 sm:mt-0 sm:mr-2 last:mr-0 text-gray-600 font-medium transition duration-300 text-sm sm:text-base sm:w-auto text-center`}
+  ${tw`border-2 border-transparent rounded-3xl capitalize cursor-pointer px-6 py-3 mt-2 sm:mt-0 sm:mr-2 last:mr-0 text-gray-900 font-medium transition duration-300 text-base sm:w-auto text-center`}
   &:hover {
-    ${tw`bg-gray-300 text-gray-700`}
+    ${tw`text-gray-700`}
   }
 
-  ${(props) => props.$active && tw`bg-primary-500! text-gray-100!`}
+  ${(props) => props.$active && tw`border-primary-500!`}
 }
 `;
 

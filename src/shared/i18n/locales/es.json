@@ -1,3 +1,17 @@
 {
-  "available NFTs": "NFTs disponibles"
+  "available NFTs": "NFTs disponibles",
+  "description": {
+    "web3": "La galería optimiza los procesos de confirmación del origen y fijación de precios de objetos de colección y obras maestras del arte mundial, almacenando estos datos en la cadena de bloques, haciéndolos fácilmente verificables y accesibles al público.",
+    "ar": "El equipo de la galería digitaliza cada objeto, preservando la autenticidad del objeto físico para proteger el patrimonio cultural e histórico de la humanidad, reproduciéndolo en el mundo digital.",
+    "refi": "\"Donde hay respeto por la cultura de otras naciones y por el individuo como persona, no hay lugar para la discriminación\" - La galería cuenta la historia de cada creador único, de cada objeto exhibido, y muestra que el individuo es importante, sus aspiraciones, y que la diversidad cultural hace que nuestro mundo sea más impresionante, eficiente y sostenible.",
+    "rwa": "Algunos propietarios de ciertos objetos nos han permitido dividir el costo en varias partes, ofreciendo así la oportunidad de poseer una versión virtual del objeto a un círculo más amplio de entusiastas e inversores. Estos objetos están indicados por un número en los modelos 3D virtuales disponibles en la esquina inferior derecha de la tarjeta del objeto, y su precio permanece inalterado en $100. Además, cada propietario de un modelo 3D tiene la oportunidad de obtener el objeto físico. Esto ha llevado al surgimiento de nuevas estrategias de inversión y posesión. (Más detalles en nuestro Acuerdo de Usuario)",
+    "defi": "La galería permite a las personas comprar lotes utilizando criptomonedas, y no recopila sus datos personales (excepto en el caso de enviar un objeto físico a un nuevo propietario). La galería funciona 24/7, 366 (365) días al año, por lo que la compra de lotes de interés está siempre disponible."
+  },
+  "heading": {
+    "web3": "Garantía de autenticidad y opciones de compra rápida:",
+    "ar": "Preservación del patrimonio cultural para las futuras generaciones:",
+    "refi": "Lucha contra el chovinismo, el racismo y otras formas de discriminación:",
+    "rwa": "La galería ofrece acceso a los objetos de inversión más lucrativos y prestigiosos del mundo:",
+    "defi": "Garantizar la privacidad, la protección de datos personales y evitar las tarifas bancarias:"
+  }
 }

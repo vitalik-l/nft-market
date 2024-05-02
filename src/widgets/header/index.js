@@ -25,8 +25,7 @@ export const NavLinks = tw.div`inline-flex items-center gap-[2rem]`;
  */
 export const NavLink = tw(Link)`
   text-lg my-2 lg:mx-6 lg:my-0
-  font-black tracking-wide transition duration-300
-  pb-1 border-b-2 border-transparent hocus:text-primary-500
+  font-black tracking-wide transition duration-300 hocus:text-primary-500
 `;
 
 export const PrimaryLink = tw(NavLink)`
@@ -119,17 +118,16 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
     <LogoLink to="/">
       <img src="/images/logo.png" alt="logo" />
       <div>
-        <div style={{
-          backgroundClip: 'text',
-          backgroundImage: 'linear-gradient(112deg, rgb(174, 134, 37) 5%, rgb(174, 134, 37) 45%, rgb(210, 172, 71) 85%)',
-          fontFamily: 'Prata',
-          color: 'transparent',
-          fontWeight: 400,
-          textAlign: 'center',
-          lineHeight: 1.3,
-          fontSize: 20,
-          maxWidth: 350
-        }}>
+        <div
+          className="title"
+          style={{
+            fontWeight: 400,
+            textAlign: 'center',
+            lineHeight: 1.3,
+            fontSize: 20,
+            maxWidth: 350
+          }}
+        >
           Age d'OR Only successful people are here
         </div>
       </div>

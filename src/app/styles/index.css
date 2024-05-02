@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Calisto MT";
+    src: url("./fonts/Calisto MT.woff2")format("woff2"),
+    url("./fonts/Calisto MT.woff")format("woff");
+}
+
+@font-face {
+    font-family: "Calisto MT";
+    src: url("./fonts/Calisto MT Bold.woff2")format("woff2"),
+    url("./fonts/Calisto MT Bold.woff")format("woff");
+    font-weight: 600;
+}
+
 .swiper-button-next, .swiper-button-prev {
     --swiper-navigation-size: 1em;
     --swiper-navigation-color: white;
@@ -18,4 +31,15 @@
     .swiper-button-next, .swiper-button-prev {
         font-size: 24px;
     }
+}
+
+.title {
+    background-clip: text;
+    background-image: linear-gradient(112deg, rgb(174, 134, 37) 5%, rgb(174, 134, 37) 45%, rgb(210, 172, 71) 85%);
+    font-family: Prata;
+    color: transparent;
+}
+
+.font-Prata {
+    font-family: Prata;
 }
