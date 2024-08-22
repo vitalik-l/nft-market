@@ -43,7 +43,16 @@ export const Footer = () => {
             <LogoImg src="/images/polygon.svg" />
             <LogoText>Polygon</LogoText>
           </LogoContainer>
-          <CopyrightNotice>&copy; 2023 Agedor. All Rights Reserved.<br />Maison de Montmorency, S-1195479/001 Monténégro.</CopyrightNotice>
+          <CopyrightNotice>
+            &copy; 2023 Agedor. All Rights Reserved.
+            <br />
+            Maison de Montmorency, S-1195479/001 Monténégro.
+            <br />
+            Tel: <a href="tel:+33 749383800">+33 749383800</a>
+            <br />
+            Emails: <a href="mailto:pr@agedor.art">pr@agedor.art</a> <br />
+            <a href="mailto:collab@agedor.art">collab@agedor.art"</a>
+          </CopyrightNotice>
           <div tw="mt-8 md:mt-0">
             <div tw="flex gap-4 justify-center md:justify-end">
               <NavLink to="/faq">FAQ</NavLink>
@@ -63,7 +72,10 @@ export const Footer = () => {
                 <SocialLink href="https://vt.tiktok.com/ZSFmBn8QD/" target="_blank">
                   <TiktokIcon />
                 </SocialLink>
-                <SocialLink href="https://www.linkedin.com/posts/maison-de-montmorency_celebrities-activity-7190639205671149568-yDSf" target="_blank">
+                <SocialLink
+                  href="https://www.linkedin.com/posts/maison-de-montmorency_celebrities-activity-7190639205671149568-yDSf"
+                  target="_blank"
+                >
                   <LinkedinIcon />
                 </SocialLink>
               </SocialLinksContainer>
