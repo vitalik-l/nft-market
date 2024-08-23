@@ -37,6 +37,21 @@ export const Footer = () => {
   return (
     <Container>
       <Content>
+        <div className="text-center">
+          <div className="title text-[20px]">Our partners</div>
+          <div className="grid md:flex items-center justify-center gap-[32px] mt-[32px] mb-[32px]">
+            <div>
+              <a href="https://yumecs.uz" target="_blank">
+                 <img src="/images/yumecs.jpg" className="w-[200px]" alt="logo"  />
+              </a>
+            </div>
+            <div>
+              <a href="https://web3-consult.io" target="_blank">
+                <img src="/images/web3_consult.jpg" className="w-[200px]" alt="logo" />
+              </a>
+            </div>
+          </div>
+        </div>
         <ThreeColRow>
           <LogoContainer>
             <LogoText>Powered by</LogoText>
