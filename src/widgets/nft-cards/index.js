@@ -35,10 +35,10 @@ const TabControl = styled.div`
 const TabContent = tw(motion.div)`mt-6 flex flex-wrap sm:-mr-10 md:-mr-6 lg:-mr-12`;
 
 const DecoratorBlob1 = styled(SvgDecoratorBlob1)`
-  ${tw`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-15 transform translate-x-2/3 -translate-y-12 text-pink-400`}
+  ${tw`w-0 pointer-events-none -z-20 absolute right-0 top-0 h-64 md:w-64 opacity-15 transform translate-x-2/3 -translate-y-12 text-pink-400`}
 `;
 const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
-  ${tw`pointer-events-none -z-20 absolute left-0 bottom-0 h-80 w-80 opacity-15 transform -translate-x-2/3 text-primary-500`}
+  ${tw`w-0 pointer-events-none -z-20 absolute left-0 bottom-0 h-80 md:w-80 opacity-15 transform -translate-x-2/3 text-primary-500`}
 `;
 
 export default ({ heading = 'Checkout the Menu', activeTab, asLink = false, onChange }) => {

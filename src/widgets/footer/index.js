@@ -39,15 +39,15 @@ export const Footer = () => {
       <Content>
         <div className="text-center">
           <div className="title text-[20px]">Our partners</div>
-          <div className="grid md:flex items-center justify-center gap-[32px] mt-[32px] mb-[32px]">
+          <div className="grid md:flex items-center justify-center gap-[32px] mt-[32px] mb-[42px]">
             <div>
               <a href="https://yumecs.uz" target="_blank">
-                 <img src="/images/yumecs.jpg" className="w-[200px]" alt="logo"  />
+                 <img src="/images/yumecs.jpg" className="w-[200px] border border-primary-500 rounded-2xl" alt="logo"  />
               </a>
             </div>
             <div>
               <a href="https://web3-consult.io" target="_blank">
-                <img src="/images/web3_consult.jpg" className="w-[200px]" alt="logo" />
+                <img src="/images/web3_consult.jpg" className="w-[200px] border border-primary-500 rounded-2xl" alt="logo" />
               </a>
             </div>
           </div>
@@ -63,10 +63,12 @@ export const Footer = () => {
             <br />
             Maison de Montmorency, S-1195479/001 Monténégro.
             <br />
-            Tel: <a href="tel:+33 749383800">+33 749383800</a>
+            <a href="https://wa.me/33749383800" target="_blank" aria-label="Chat on WhatsApp" className="inline-flex mt-[1ex]">
+              <img alt="Chat on WhatsApp" src="/images/WhatsAppButtonGreenMedium.png" className="w-[200px]"/>
+            </a>
             <br />
             Emails: <a href="mailto:pr@agedor.art">pr@agedor.art</a> <br />
-            <a href="mailto:collab@agedor.art">collab@agedor.art"</a>
+            <a href="mailto:collab@agedor.art">collab@agedor.art</a>
           </CopyrightNotice>
           <div tw="mt-8 md:mt-0">
             <div tw="flex gap-4 justify-center md:justify-end">
