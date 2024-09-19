@@ -55,7 +55,7 @@ export const MobileNavLinks = motion(styled.div`
 `);
 
 export const DesktopNavLinks = tw.nav`
-  hidden lg:flex flex-1 justify-between items-center
+  hidden lg:grid grid-cols-3 items-center w-full
 `;
 
 export const Header = ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = 'lg' }) => {
@@ -117,20 +117,6 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
   const defaultLogoLink = (
     <LogoLink to="/">
       <img src="/images/logo.jpg" alt="logo" />
-      <div>
-        <div
-          className="title"
-          style={{
-            fontWeight: 400,
-            textAlign: 'center',
-            lineHeight: 1.3,
-            fontSize: 20,
-            maxWidth: 350
-          }}
-        >
-          Age d'OR Only successful people are here
-        </div>
-      </div>
     </LogoLink>
   );
 
@@ -139,13 +125,43 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
 
   return (
     <Root className={className || 'header-light'}>
-      <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
+      <DesktopNavLinks>
         {logoLink}
-        {links}
+        <div className="justify-self-center">
+          <div
+            className="title"
+            style={{
+              fontWeight: 400,
+              textAlign: 'center',
+              lineHeight: 1.3,
+              fontSize: 20,
+              maxWidth: 500
+            }}
+          >
+            When you buy on Agedor, you know that the gallery takes care of everything
+          </div>
+        </div>
+        <div className="justify-self-end">
+            {links}
+        </div>
       </DesktopNavLinks>
 
       <MobileNavLinksContainer css={collapseBreakpointCss.mobileNavLinksContainer}>
         {logoLink}
+        <div>
+          <div
+            className="title"
+            style={{
+              fontWeight: 400,
+              textAlign: 'center',
+              lineHeight: 1.3,
+              fontSize: 20,
+              maxWidth: 500
+            }}
+          >
+            When you buy on Agedor, you know that the gallery takes care of everything
+          </div>
+        </div>
         <MobileNavLinks
           initial={{ x: '150%', display: 'none' }}
           animate={animation}
