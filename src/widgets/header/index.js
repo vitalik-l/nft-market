@@ -39,7 +39,7 @@ export const LogoLink = styled(NavLink)`
   ${tw`flex font-black border-b-0 text-2xl! ml-0!`};
 
   img {
-    ${tw`w-10 h-10 mr-3`}
+    ${tw`min-w-[40px] w-10 h-10 mr-3`}
   }
 `;
 

@@ -30,10 +30,10 @@ export const HomePage = () => {
       <Header />
       <ContentWithPaddingXl className="!pb-0">
         <div className="grid gap-6">
+          <TextCard title="rwa" />
           <TextCard title="web3" />
           <TextCard title="ar" />
           <TextCard title="refi" />
-          <TextCard title="rwa" />
           <TextCard title="defi" />
         </div>
       </ContentWithPaddingXl>

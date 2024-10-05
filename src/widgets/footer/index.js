@@ -3,6 +3,8 @@ import { ReactComponent as TelegramIcon } from '../../shared/ui-kit/images/teleg
 import { ReactComponent as YoutubeIcon } from '../../shared/ui-kit/images/youtube-icon.svg';
 import { ReactComponent as TiktokIcon } from '../../shared/ui-kit/images/tiktok-icon.svg';
 import { ReactComponent as LinkedinIcon } from '../../shared/ui-kit/images/linkedin-icon.svg';
+import { ReactComponent as InstagramIcon } from '../../shared/ui-kit/images/instagram-icon.svg';
+import { ReactComponent as FacebookIcon } from '../../shared/ui-kit/images/facebook-icon.svg';
 import React from 'react';
 import tw from 'twin.macro';
 import 'styled-components/macro';
@@ -16,11 +18,11 @@ const Content = tw.div`max-w-screen-xl mx-auto relative z-10`;
 
 const ThreeColRow = tw.div`flex flex-col md:flex-row items-center justify-between`;
 
-const LogoContainer = tw.div`flex items-center justify-center md:justify-start gap-2 text-lg`;
+const LogoContainer = tw.div`flex items-center justify-center md:justify-start gap-2 text-lg grow shrink basis-0`;
 const LogoImg = tw.img`w-8`;
 const LogoText = tw.h5`font-black tracking-wider text-gray-800 whitespace-nowrap`;
 
-const CopyrightNotice = tw.p`text-center text-sm sm:text-base mt-8 md:mt-0 font-medium`;
+const CopyrightNotice = tw.p`text-center text-sm sm:text-base mt-8 md:mt-0 font-medium grow shrink basis-0`;
 
 const StyledLink = tw(ButtonBase)`underline font-medium text-sm`;
 const NavLink = tw(Link)`underline font-medium text-sm text-center`;
@@ -70,12 +72,12 @@ export const Footer = () => {
             Emails: <a href="mailto:pr@agedor.art">pr@agedor.art</a> <br />
             <a href="mailto:collab@agedor.art">collab@agedor.art</a>
           </CopyrightNotice>
-          <div tw="mt-8 md:mt-0">
+          <div tw="mt-8 md:mt-0 grow shrink basis-0">
             <div tw="flex gap-4 justify-center md:justify-end">
               <NavLink to="/faq">FAQ</NavLink>
               <StyledLink onClick={() => agreementModel.open()}>Terms and Conditions</StyledLink>
             </div>
-            <div tw="flex flex-wrap gap-4 items-center mt-2">
+            <div tw="flex flex-wrap gap-4 items-center mt-2 md:justify-end">
               <SocialLinksContainer>
                 <SocialLink href="https://t.me/agedor" target="_blank">
                   <TelegramIcon />
@@ -94,6 +96,18 @@ export const Footer = () => {
                   target="_blank"
                 >
                   <LinkedinIcon />
+                </SocialLink>
+                <SocialLink
+                  href="https://www.instagram.com/agedor.art/profilecard"
+                  target="_blank"
+                >
+                  <InstagramIcon />
+                </SocialLink>
+                <SocialLink
+                  href="https://www.facebook.com/share/U25RDSmRoh3wYFzm/?mibextid=LQQJ4d"
+                  target="_blank"
+                >
+                  <FacebookIcon />
                 </SocialLink>
               </SocialLinksContainer>
             </div>
