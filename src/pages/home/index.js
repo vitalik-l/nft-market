@@ -28,7 +28,7 @@ export const HomePage = () => {
   return (
     <AnimationRevealPage>
       <Header />
-        <div className="title text-[20px] text-center max-w-[1280px] mx-auto mt-[4rem] font-bold whitespace-pre-wrap">
+        <div className="title text-[20px] text-center max-w-[1280px] mx-auto mt-[6rem] font-bold whitespace-pre-wrap">
           {t('homeHeading')}
         </div>
       <TabCardGrid
