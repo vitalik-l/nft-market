@@ -28,15 +28,9 @@ export const HomePage = () => {
   return (
     <AnimationRevealPage>
       <Header />
-      <ContentWithPaddingXl className="!pb-0">
-        <div className="grid gap-6">
-          <TextCard title="rwa" />
-          <TextCard title="web3" />
-          <TextCard title="ar" />
-          <TextCard title="refi" />
-          <TextCard title="defi" />
+        <div className="title text-[20px] text-center max-w-[1280px] mx-auto mt-[4rem] font-bold whitespace-pre">
+          {t('homeHeading')}
         </div>
-      </ContentWithPaddingXl>
       <TabCardGrid
         heading={
           <>
@@ -46,6 +40,15 @@ export const HomePage = () => {
         onChange={homePageModel.categoryChanged}
         activeTab={activeCategory}
       />
+      <ContentWithPaddingXl className="!pb-0">
+        <div className="grid gap-6">
+          <TextCard title="rwa" />
+          <TextCard title="web3" />
+          <TextCard title="ar" />
+          <TextCard title="refi" />
+          <TextCard title="defi" />
+        </div>
+      </ContentWithPaddingXl>
       <Footer />
     </AnimationRevealPage>
   );

@@ -139,6 +139,7 @@ export default function App() {
   const chain = useUnit(configModel.$chain);
   const categoriesPending = useUnit(collectionsModel.categoriesFx.pending);
   const isAppLoading = !chain || categoriesPending;
+  // const isAppLoading = false;
 
   return (
     <Toast.Provider swipeDirection="right">

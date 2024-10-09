@@ -89,7 +89,7 @@ export const NftCard = ({ address, onClick, balance, labelAction = 'Buy Now' }) 
           <CardTitle>{title}</CardTitle>
           <CardContent>{content}</CardContent>
           {!isProfile && (
-            <div className="text-primary-500 font-semibold text-xs mt-4 text-right">{t('Available NFTs')}</div>
+            <div className="text-primary-500 font-semibold text-xs mt-4 text-right">{t('Available RWA')}</div>
           )}
           <div className="flex justify-between items-center">
             <CardPrice>{isProfile ? `Your balance: ${balance}` : usd(price?.value)}</CardPrice>
