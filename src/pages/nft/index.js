@@ -84,7 +84,7 @@ export const NftPage = () => {
   const hasBalance = accountBalance > 0;
   const statistics = [
     {
-      key: 'Price for one NFT',
+      key: 'Price for one RWA',
       value: priceDollar.isLoading ? <Spinner /> : usd(priceDollar.value)
     },
     {

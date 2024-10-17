@@ -3,7 +3,8 @@
     "PRICE_ASC": "Price low to high",
     "PRICE_DESC": "Price high to low",
     "POPULAR_ASC": "Popularity low to high",
-    "POPULAR_DESC": "Popularity high to low"
+    "POPULAR_DESC": "Popularity high to low",
+    "CREATED_DESC": "Created new to old"
   },
   "downloadModel": "Download 3D model",
   "confirmInWallet": "Confirm transaction in the wallet.",

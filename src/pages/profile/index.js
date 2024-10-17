@@ -22,7 +22,7 @@ const NftList = ({ addresses = [] }) => {
         <div>No items</div>
         <div tw="mt-3">
           <Button as={Link} to="/category">
-            Buy NFT
+            Buy RWA
           </Button>
         </div>
       </div>
