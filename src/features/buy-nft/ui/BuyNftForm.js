@@ -13,7 +13,7 @@ import { ErrorToast } from '../../../shared/ui-kit/components/misc/Toast';
 import { walletModel } from '../../../entities/wallet/model';
 import { useTranslation } from 'react-i18next';
 import { configModel } from '../../../shared/config/model';
-import { parseEther } from 'viem';
+import { parseEther, parseUnits } from 'viem';
 
 const defaultValues = {
   currency: 'USDT',
@@ -59,7 +59,7 @@ export const BuyNftForm = ({ nftAddress, className }) => {
       return walletModel.switchNetworkFx({ chainId: chain?.attributes?.chainId });
     }
     if (!approved) {
-      return buyNftModel.approve({ nftAddress, currency, amount: parseEther(fullPrice.toString()) });
+      return buyNftModel.approve({ nftAddress, currency, amount: parseUnits(fullPrice.toString(), 6) });
     }
     buyNftModel.mint({ nftAddress, currency, amount });
   };
