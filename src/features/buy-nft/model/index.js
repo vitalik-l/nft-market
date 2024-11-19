@@ -1,4 +1,4 @@
-import { combine, createEffect, createEvent, createStore, sample, split } from 'effector';
+import { combine, createEffect, createEvent, createStore, sample } from 'effector';
 import { readContract } from '@wagmi/core';
 import { erc20Abi, nftAbi } from '../../../shared/abi';
 import { MaxUint256 } from '../../../shared/config';
@@ -10,8 +10,8 @@ import { writeContractFx } from '../../../shared/lib/wagmi-effector';
 import { createFxStatus } from './create-fx-status';
 import { agreementModel } from '../../../entities/agreement';
 import { configModel } from '../../../shared/config/model';
-import { formatEther, parseEther } from 'viem';
 import { profileModel } from '../../../entities/profile/model';
+import { formatUnits } from 'viem';
 
 const BuyNftGate = createGate();
 
@@ -78,11 +78,12 @@ sample({
 
 const $allowanceKv = createStore({}).on(allowanceFx.done, (state, { params, result }) => {
   const stablecoin = configModel.stablecoin?.[params.currency];
+  console.log('allowance is', result);
   return {
     ...state,
     [params.accountAddress]: {
       ...state[params.accountAddress],
-      [stablecoin]: { ...state?.[params.accountAddress]?.[stablecoin], [params.nftAddress]: formatEther(result) }
+      [stablecoin]: { ...state?.[params.accountAddress]?.[stablecoin], [params.nftAddress]: formatUnits(result, 6) }
     }
   };
 });

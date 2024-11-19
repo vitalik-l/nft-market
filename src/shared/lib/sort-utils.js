@@ -11,7 +11,6 @@ const basic = (rowA = {}, rowB = {}, source = '') => {
 };
 
 export const sort = (arr = [], source = '', desc = false) => {
-  console.log('sort', arr, source, desc)
   return [...arr].sort((a, b) => {
     const int = basic(a, b, source);
     if (int !== 0) {
