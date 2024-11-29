@@ -44,12 +44,25 @@ export const Footer = () => {
           <div className="grid md:flex items-center justify-center gap-[32px] mt-[32px] mb-[42px]">
             <div>
               <a href="https://yumecs.uz" target="_blank">
-                 <img src="/images/yumecs.jpg" className="w-[200px] border border-primary-500 rounded-2xl" alt="logo"  />
+                <img src="/images/yumecs.jpg" className="w-[200px] border border-primary-500 rounded-2xl" alt="logo" />
               </a>
             </div>
             <div>
               <a href="https://web3-consult.io" target="_blank">
-                <img src="/images/web3_consult.jpg" className="w-[200px] border border-primary-500 rounded-2xl" alt="logo" />
+                <img
+                  src="/images/web3_consult.jpg"
+                  className="w-[200px] border border-primary-500 rounded-2xl"
+                  alt="logo"
+                />
+              </a>
+            </div>
+            <div>
+              <a href="https://www.futuremaastricht.com" target="_blank">
+                <img
+                  src="/images/future_museums.jpg"
+                  className="w-[200px] border border-primary-500 rounded-2xl"
+                  alt="logo"
+                />
               </a>
             </div>
           </div>
@@ -65,8 +78,13 @@ export const Footer = () => {
             <br />
             Maison de Montmorency, S-1195479/001 Monténégro.
             <br />
-            <a href="https://wa.me/33749383800" target="_blank" aria-label="Chat on WhatsApp" className="inline-flex mt-[1ex]">
-              <img alt="Chat on WhatsApp" src="/images/WhatsAppButtonGreenMedium.png" className="w-[200px]"/>
+            <a
+              href="https://wa.me/33749383800"
+              target="_blank"
+              aria-label="Chat on WhatsApp"
+              className="inline-flex mt-[1ex]"
+            >
+              <img alt="Chat on WhatsApp" src="/images/WhatsAppButtonGreenMedium.png" className="w-[200px]" />
             </a>
             <br />
             Emails: <a href="mailto:pr@agedor.art">pr@agedor.art</a> <br />
@@ -97,16 +115,10 @@ export const Footer = () => {
                 >
                   <LinkedinIcon />
                 </SocialLink>
-                <SocialLink
-                  href="https://www.instagram.com/agedor.art/profilecard"
-                  target="_blank"
-                >
+                <SocialLink href="https://www.instagram.com/agedor.art/profilecard" target="_blank">
                   <InstagramIcon />
                 </SocialLink>
-                <SocialLink
-                  href="https://www.facebook.com/share/U25RDSmRoh3wYFzm/?mibextid=LQQJ4d"
-                  target="_blank"
-                >
+                <SocialLink href="https://www.facebook.com/share/U25RDSmRoh3wYFzm/?mibextid=LQQJ4d" target="_blank">
                   <FacebookIcon />
                 </SocialLink>
               </SocialLinksContainer>
