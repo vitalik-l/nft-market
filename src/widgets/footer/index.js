@@ -59,7 +59,7 @@ export const Footer = () => {
             <div>
               <a href="https://www.futuremaastricht.com" target="_blank">
                 <img
-                  src="/images/future_museums.jpg"
+                  src="/images/fm.jpg"
                   className="w-[200px] border border-primary-500 rounded-2xl"
                   alt="logo"
                 />
