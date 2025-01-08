@@ -15,7 +15,7 @@ import React from 'react';
 const CardContainer = tw.div`mt-10 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 sm:pr-10 md:pr-6 lg:pr-12`;
 const Card = tw(
   motion(Link)
-)`border border-primary-500 rounded-2xl block max-w-xs mx-auto sm:max-w-none sm:mx-0 overflow-hidden`;
+)`border-r border-b rounded-br-2xl border-primary-500 block max-w-xs mx-auto sm:max-w-none sm:mx-0 overflow-hidden`;
 const CardImageContainer = styled.div`
   ${(props) =>
     css`
