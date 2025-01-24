@@ -36,14 +36,14 @@ export const PrimaryLink = tw(NavLink)`
 `;
 
 export const LogoLink = styled(NavLink)`
-  ${tw`flex font-black border-b-0 text-2xl! ml-0!`};
+  ${tw`flex font-black border-b-0 text-2xl! ml-0! my-0!`};
 
   img {
-    ${tw`min-w-[40px] w-10 h-10 mr-3`}
+    ${tw`min-w-[45px] w-[45px] h-[60px] object-contain lg:w-[100px] lg:h-[140px]`}
   }
 `;
 
-export const MobileNavLinksContainer = tw.nav`flex flex-1 justify-between`;
+export const MobileNavLinksContainer = tw.nav`flex flex-1 justify-between items-center`;
 export const NavToggle = tw.button`
   lg:hidden z-20 focus:outline-none hocus:text-primary-500 transition duration-300
 `;
@@ -59,7 +59,7 @@ export const DesktopNavLinks = tw.nav`
 `;
 
 export const Header = ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = 'lg' }) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -116,7 +116,7 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
 
   const defaultLogoLink = (
     <LogoLink to="/">
-      <img src="/images/logo.jpg" alt="logo" />
+      <img src="/images/agedor_logo.png" alt="logo" />
     </LogoLink>
   );
 
@@ -138,7 +138,7 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
               maxWidth: 500
             }}
           >
-            When you buy on Agedor, you know that the gallery takes care of everything
+            {t('baseHeading')}
           </div>
         </div>
         <div className="justify-self-end">
@@ -159,7 +159,7 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
               maxWidth: 500
             }}
           >
-            When you buy on Agedor, you know that the gallery takes care of everything
+            {t('baseHeading')}
           </div>
         </div>
         <MobileNavLinks
@@ -169,7 +169,7 @@ export const Header = ({ roundedHeaderButton = false, logoLink, links, className
         >
           {links}
         </MobileNavLinks>
-        <div className="mt-4 z-20">
+        <div className="z-20">
           <NavToggle onClick={toggleNavbar}>
             {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
           </NavToggle>

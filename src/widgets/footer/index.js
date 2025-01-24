@@ -44,23 +44,32 @@ export const Footer = () => {
           <div className="grid md:flex items-center justify-center gap-[32px] mt-[32px] mb-[42px]">
             <div>
               <a href="https://yumecs.uz" target="_blank">
-                <img src="/images/yumecs.jpg" className="w-[200px] border border-primary-500 rounded-2xl" alt="logo" />
+                <img src="/images/yumecs.jpg" className="w-[200px] h-[120px] object-cover border border-primary-500 rounded-2xl" alt="logo" />
               </a>
             </div>
             <div>
-              <a href="https://web3-consult.io" target="_blank">
+              <a href="https://web3-consult.io" target="_blank" className="flex items-center border border-primary-500 rounded-2xl h-[120px]">
                 <img
                   src="/images/web3_consult.jpg"
-                  className="w-[200px] border border-primary-500 rounded-2xl"
+                  className="w-[200px]"
                   alt="logo"
                 />
               </a>
             </div>
             <div>
-              <a href="https://www.futuremaastricht.com" target="_blank">
+              <a href="https://www.futuremaastricht.com" target="_blank" className="flex items-center overflow-hidden">
                 <img
                   src="/images/fm.jpg"
-                  className="w-[200px] border border-primary-500 rounded-2xl"
+                  className="w-[200px] h-[120px] rounded-2xl object-cover border border-primary-500"
+                  alt="logo"
+                />
+              </a>
+            </div>
+            <div>
+              <a href="https://metaggio.com" target="_blank" className="flex items-center border border-primary-500 rounded-2xl h-[120px] px-[10px]">
+                <img
+                  src="/images/metaggio.svg"
+                  className="w-[180px]"
                   alt="logo"
                 />
               </a>
