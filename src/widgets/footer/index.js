@@ -65,15 +65,6 @@ export const Footer = () => {
                 />
               </a>
             </div>
-            <div>
-              <a href="https://metaggio.com" target="_blank" className="flex items-center border border-primary-500 rounded-2xl h-[120px] px-[10px]">
-                <img
-                  src="/images/metaggio.svg"
-                  className="w-[180px]"
-                  alt="logo"
-                />
-              </a>
-            </div>
           </div>
         </div>
         <ThreeColRow>
@@ -83,7 +74,7 @@ export const Footer = () => {
             <LogoText>Polygon</LogoText>
           </LogoContainer>
           <CopyrightNotice>
-            &copy; 2023 Agedor. All Rights Reserved.
+            &copy; 2023-2025 Agedor. All Rights Reserved.
             <br />
             Maison de Montmorency, S-1195479/001 Monténégro.
             <br />
@@ -106,29 +97,29 @@ export const Footer = () => {
             </div>
             <div tw="flex flex-wrap gap-4 items-center mt-2 md:justify-end">
               <SocialLinksContainer>
-                <SocialLink href="https://t.me/agedor" target="_blank">
-                  <TelegramIcon />
-                </SocialLink>
-                <SocialLink href="https://twitter.com/agedorgallery?s=21&t=UfsBXRsqMNbR6y-bWd3p9g" target="_blank">
-                  <TwitterIcon />
-                </SocialLink>
-                <SocialLink href="https://youtube.com/@Agedorart" target="_blank">
-                  <YoutubeIcon />
-                </SocialLink>
-                <SocialLink href="https://vt.tiktok.com/ZSFmBn8QD/" target="_blank">
-                  <TiktokIcon />
-                </SocialLink>
                 <SocialLink
                   href="https://www.linkedin.com/posts/maison-de-montmorency_celebrities-activity-7190639205671149568-yDSf"
                   target="_blank"
                 >
                   <LinkedinIcon />
                 </SocialLink>
-                <SocialLink href="https://www.instagram.com/agedor.art/profilecard" target="_blank">
-                  <InstagramIcon />
+                <SocialLink href="https://twitter.com/agedorgallery?s=21&t=UfsBXRsqMNbR6y-bWd3p9g" target="_blank">
+                  <TwitterIcon />
                 </SocialLink>
                 <SocialLink href="https://www.facebook.com/share/U25RDSmRoh3wYFzm/?mibextid=LQQJ4d" target="_blank">
                   <FacebookIcon />
+                </SocialLink>
+                <SocialLink href="https://www.instagram.com/agedor.art/profilecard" target="_blank">
+                  <InstagramIcon />
+                </SocialLink>
+                <SocialLink href="https://youtube.com/@Agedorart" target="_blank">
+                  <YoutubeIcon />
+                </SocialLink>
+                <SocialLink href="https://t.me/agedor" target="_blank">
+                  <TelegramIcon />
+                </SocialLink>
+                <SocialLink href="https://vt.tiktok.com/ZSFmBn8QD/" target="_blank">
+                  <TiktokIcon />
                 </SocialLink>
               </SocialLinksContainer>
             </div>
