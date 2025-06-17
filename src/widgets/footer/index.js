@@ -76,7 +76,7 @@ export const Footer = () => {
           <CopyrightNotice>
             &copy; 2023-2025 Agedor. All Rights Reserved.
             <br />
-            Maison de Montmorency, S-1195479/001 Monténégro.
+            Maison de Montmorency.
             <br />
             <a
               href="https://wa.me/33749383800"
