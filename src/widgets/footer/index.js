@@ -115,9 +115,9 @@ export const Footer = () => {
                 <SocialLink href="https://youtube.com/@Agedorart" target="_blank">
                   <YoutubeIcon />
                 </SocialLink>
-                <SocialLink href="https://t.me/agedor" target="_blank">
-                  <TelegramIcon />
-                </SocialLink>
+                {/*<SocialLink href="https://t.me/agedor" target="_blank">*/}
+                {/*  <TelegramIcon />*/}
+                {/*</SocialLink>*/}
                 <SocialLink href="https://vt.tiktok.com/ZSFmBn8QD/" target="_blank">
                   <TiktokIcon />
                 </SocialLink>
