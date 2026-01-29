@@ -6,6 +6,8 @@ RUN gunzip GeoIP.dat.gz
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY build/ .
+RUN find /usr/share/nginx/html -type d -exec chmod 755 {} \; \
+ && find /usr/share/nginx/html -type f -exec chmod 644 {} \;
 EXPOSE 80
 # Containers run nginx with global directives and daemon off
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -59,7 +59,7 @@ export const Footer = () => {
             <div>
               <a href="https://www.futuremaastricht.com" target="_blank" className="flex items-center overflow-hidden">
                 <img
-                  src="/images/fm.jpg"
+                  src="/images/future_museums.jpg"
                   className="w-[200px] h-[120px] rounded-2xl object-cover border border-primary-500"
                   alt="logo"
                 />
